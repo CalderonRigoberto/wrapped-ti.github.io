@@ -43,6 +43,7 @@
   --duration-fast: 0.3s;
   --duration-medium: 0.6s;
   --duration-slow: 1s;
+  --duration-very-slow: 2s;
 }
 
 /* ===== RESET ===== */
