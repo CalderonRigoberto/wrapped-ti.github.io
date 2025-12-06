@@ -16,7 +16,7 @@ const { title, description = "TI Wrapped 2024 - Resumen anual del departamento d
     <meta name="generator" content={Astro.generator} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={new URL('/favicon.svg', import.meta.env.BASE_URL).pathname} />
     
     <!-- Preconnect to font sources -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -35,12 +35,7 @@ const { title, description = "TI Wrapped 2024 - Resumen anual del departamento d
     
     <!-- GSAP Scripts -->
     <script>
-      import gsap from 'gsap';
-      import { ScrollTrigger } from 'gsap/ScrollTrigger';
-      
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Scroll progress bar
+      // Scroll progress bar (works without GSAP)
       const progressBar = document.getElementById('scroll-progress-bar');
       
       window.addEventListener('scroll', () => {
@@ -52,29 +47,12 @@ const { title, description = "TI Wrapped 2024 - Resumen anual del departamento d
         }
       });
       
-      // Animate elements on scroll
-      const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
-        
-        elements.forEach((el) => {
-          ScrollTrigger.create({
-            trigger: el,
-            start: 'top 85%',
-            onEnter: () => el.classList.add('visible'),
-            once: true
-          });
-        });
-      };
-      
-      // Initialize animations when DOM is ready
-      document.addEventListener('DOMContentLoaded', animateOnScroll);
-      
-      // Counter animation for metrics
-      window.animateCounter = (element: HTMLElement, target: number, duration: number = 2000) => {
+      // Counter animation for metrics (works without GSAP)
+      window.animateCounter = (element, target, duration = 2000) => {
         const start = 0;
         const startTime = performance.now();
         
-        const updateCounter = (currentTime: number) => {
+        const updateCounter = (currentTime) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
           

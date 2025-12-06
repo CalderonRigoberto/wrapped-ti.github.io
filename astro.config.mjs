@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://wrapped-ti.github.io',
+  site: 'https://calderonrigoberto.github.io',
+  base: '/wrapped-ti.github.io/',
+  output: 'static',
   vite: {
     css: {
       devSourcemap: true
