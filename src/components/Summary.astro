@@ -186,10 +186,7 @@ const { summary } = data;
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  
-  gsap.registerPlugin(ScrollTrigger);
+  import { gsap, ScrollTrigger } from '../scripts/gsap-init';
   
   document.addEventListener('DOMContentLoaded', () => {
     const statValues = document.querySelectorAll('.stat-value');

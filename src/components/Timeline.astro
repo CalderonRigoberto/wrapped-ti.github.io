@@ -270,10 +270,7 @@ const getEventIcon = (type: string) => {
 </style>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  
-  gsap.registerPlugin(ScrollTrigger);
+  import { gsap, ScrollTrigger } from '../scripts/gsap-init';
   
   document.addEventListener('DOMContentLoaded', () => {
     const timelineItems = document.querySelectorAll('.timeline-item');

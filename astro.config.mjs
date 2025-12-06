@@ -7,6 +7,12 @@ export default defineConfig({
   vite: {
     css: {
       devSourcemap: true
+    },
+    optimizeDeps: {
+      include: ['gsap', 'gsap/ScrollTrigger']
+    },
+    ssr: {
+      noExternal: ['gsap']
     }
   },
   server: {
