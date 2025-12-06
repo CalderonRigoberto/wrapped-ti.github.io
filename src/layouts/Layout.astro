@@ -35,42 +35,77 @@ const { title, description = "TI Wrapped 2024 - Resumen anual del departamento d
     
     <!-- GSAP Scripts -->
     <script>
-      // Scroll progress bar (works without GSAP)
-      const progressBar = document.getElementById('scroll-progress-bar');
-      
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        if (progressBar) {
-          progressBar.style.width = `${scrollPercent}%`;
-        }
-      });
-      
-      // Counter animation for metrics (works without GSAP)
-      window.animateCounter = (element, target, duration = 2000) => {
-        const start = 0;
-        const startTime = performance.now();
+      // Ensure script runs even if DOMContentLoaded already fired
+      const initScripts = () => {
+        // Scroll progress bar (works without GSAP)
+        const progressBar = document.getElementById('scroll-progress-bar');
         
-        const updateCounter = (currentTime) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
+        if (progressBar) {
+          window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = `${scrollPercent}%`;
+          });
+        }
+        
+        // Animate elements on scroll - fallback for elements that need .visible class
+        const animateOnScroll = () => {
+          const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
           
-          // Easing function (ease-out-expo)
-          const easeOutExpo = 1 - Math.pow(2, -10 * progress);
-          const current = Math.floor(start + (target - start) * easeOutExpo);
+          // Use Intersection Observer for better performance
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -15% 0px'
+          });
           
-          element.textContent = current.toLocaleString('es-ES');
-          
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          } else {
-            element.textContent = target.toLocaleString('es-ES');
-          }
+          elements.forEach((el) => {
+            observer.observe(el);
+          });
         };
         
-        requestAnimationFrame(updateCounter);
+        // Run immediately and also on DOMContentLoaded
+        animateOnScroll();
+        
+        // Counter animation for metrics (works without GSAP)
+        window.animateCounter = (element, target, duration = 2000) => {
+          const start = 0;
+          const startTime = performance.now();
+          
+          const updateCounter = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function (ease-out-expo)
+            const easeOutExpo = 1 - Math.pow(2, -10 * progress);
+            const current = Math.floor(start + (target - start) * easeOutExpo);
+            
+            element.textContent = current.toLocaleString('es-ES');
+            
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              element.textContent = target.toLocaleString('es-ES');
+            }
+          };
+          
+          requestAnimationFrame(updateCounter);
+        };
       };
+      
+      // Run immediately if DOM is ready, otherwise wait
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScripts);
+      } else {
+        initScripts();
+      }
     </script>
   </body>
 </html>
