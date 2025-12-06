@@ -1,0 +1,274 @@
+---
+import data from '../data/projects.json';
+
+const { technologies } = data;
+
+// Group by category
+const categories = technologies.reduce((acc, tech) => {
+  if (!acc[tech.category]) {
+    acc[tech.category] = [];
+  }
+  acc[tech.category].push(tech);
+  return acc;
+}, {} as Record<string, typeof technologies>);
+---
+
+<section class="tech-stack" id="tech">
+  <div class="tech-bg">
+    <div class="gradient-blob green blob-tech"></div>
+  </div>
+  
+  <div class="container">
+    <div class="tech-header">
+      <span class="section-label fade-in">STACK TECNOLÓGICO</span>
+      <h2 class="tech-title fade-in stagger-1">
+        Las <span class="text-gradient-cyan">herramientas</span> de nuestro éxito
+      </h2>
+      <p class="tech-subtitle fade-in stagger-2">
+        Las tecnologías que impulsaron nuestros proyectos este año
+      </p>
+    </div>
+    
+    <div class="tech-visualization">
+      <div class="tech-bars fade-in">
+        {technologies.sort((a, b) => b.usage - a.usage).map((tech, index) => (
+          <div class="tech-bar-item" style={`--delay: ${index * 0.1}s`}>
+            <div class="tech-bar-header">
+              <span class="tech-bar-name">{tech.name}</span>
+              <span class="tech-bar-percentage">{tech.usage}%</span>
+            </div>
+            <div class="tech-bar-track">
+              <div class="tech-bar-fill" style={`--width: ${tech.usage}%`} data-width={tech.usage}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="tech-categories fade-in stagger-2">
+        {Object.entries(categories).map(([category, techs]) => (
+          <div class="category-card glass-card">
+            <h4 class="category-title">{category}</h4>
+            <div class="category-techs">
+              {techs.map((tech) => (
+                <span class="category-tech-tag">{tech.name}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-stack {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: var(--color-bg-dark);
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+  }
+  
+  .tech-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .blob-tech {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    left: -100px;
+    opacity: 0.25;
+    animation: float 25s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(40px, -40px);
+    }
+  }
+  
+  .tech-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-green);
+    margin-bottom: 1rem;
+  }
+  
+  .tech-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  
+  .tech-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .tech-visualization {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tech-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .tech-bar-item {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideIn 0.6s var(--ease-out-expo) forwards;
+    animation-delay: var(--delay);
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .tech-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tech-bar-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .tech-bar-percentage {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-cyan);
+  }
+  
+  .tech-bar-track {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  
+  .tech-bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--gradient-cyan);
+    border-radius: 100px;
+    transition: width 1.5s var(--ease-out-expo);
+  }
+  
+  .tech-bar-fill.animate {
+    width: var(--width);
+  }
+  
+  .tech-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .category-card {
+    padding: 1.5rem;
+  }
+  
+  .category-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-cyan);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .category-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .category-tech-tag {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    background: rgba(0, 245, 212, 0.1);
+    border: 1px solid rgba(0, 245, 212, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    transition: all 0.2s ease;
+  }
+  
+  .category-tech-tag:hover {
+    background: rgba(0, 245, 212, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 900px) {
+    .tech-visualization {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .tech-categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .tech-categories {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  gsap.registerPlugin(ScrollTrigger);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const techBars = document.querySelectorAll('.tech-bar-fill');
+    
+    ScrollTrigger.create({
+      trigger: '.tech-bars',
+      start: 'top 75%',
+      onEnter: () => {
+        techBars.forEach((bar) => {
+          bar.classList.add('animate');
+        });
+      },
+      once: true
+    });
+  });
+</script>
+

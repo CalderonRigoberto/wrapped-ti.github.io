@@ -1,0 +1,262 @@
+/* ===== FONTS ===== */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=cabinet-grotesk@400,500,700&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Colors - Spotify Wrapped inspired */
+  --color-bg-dark: #0a0a0a;
+  --color-bg-section: #121212;
+  --color-bg-card: rgba(255, 255, 255, 0.05);
+  
+  /* Vibrant gradients */
+  --gradient-magenta: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+  --gradient-cyan: linear-gradient(135deg, #00f5d4 0%, #00bbf9 100%);
+  --gradient-orange: linear-gradient(135deg, #ff9e00 0%, #ff006e 100%);
+  --gradient-purple: linear-gradient(135deg, #8338ec 0%, #3a86ff 100%);
+  --gradient-green: linear-gradient(135deg, #00f5d4 0%, #9be15d 100%);
+  
+  /* Accent colors */
+  --color-magenta: #ff006e;
+  --color-cyan: #00f5d4;
+  --color-orange: #ff9e00;
+  --color-purple: #8338ec;
+  --color-blue: #3a86ff;
+  --color-green: #9be15d;
+  
+  /* Text colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-text-muted: rgba(255, 255, 255, 0.4);
+  
+  /* Typography */
+  --font-display: 'Clash Display', sans-serif;
+  --font-body: 'Cabinet Grotesk', sans-serif;
+  
+  /* Spacing */
+  --section-padding: clamp(4rem, 10vh, 8rem);
+  --container-max: 1200px;
+  --container-padding: clamp(1.5rem, 5vw, 4rem);
+  
+  /* Animations */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 0.3s;
+  --duration-medium: 0.6s;
+  --duration-slow: 1s;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-dark);
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding) 0;
+  position: relative;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-gradient-magenta {
+  background: var(--gradient-magenta);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-cyan {
+  background: var(--gradient-cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-orange {
+  background: var(--gradient-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: var(--gradient-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== GLASSMORPHISM CARDS ===== */
+.glass-card {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-medium) var(--ease-out-expo),
+              transform var(--duration-medium) var(--ease-out-expo);
+}
+
+.slide-in-left {
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.slide-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--duration-medium) var(--ease-out-expo),
+              transform var(--duration-medium) var(--ease-out-expo);
+}
+
+.slide-in-right {
+  opacity: 0;
+  transform: translateX(60px);
+}
+
+.slide-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity var(--duration-medium) var(--ease-out-expo),
+              transform var(--duration-medium) var(--ease-out-expo);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--duration-medium) var(--ease-out-expo),
+              transform var(--duration-medium) var(--ease-out-expo);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+
+/* ===== DECORATIVE ELEMENTS ===== */
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.gradient-blob.magenta {
+  background: var(--color-magenta);
+}
+
+.gradient-blob.cyan {
+  background: var(--color-cyan);
+}
+
+.gradient-blob.purple {
+  background: var(--color-purple);
+}
+
+.gradient-blob.orange {
+  background: var(--color-orange);
+}
+
+/* ===== SCROLL PROGRESS ===== */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: var(--gradient-magenta);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  
+  .glass-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+}
+

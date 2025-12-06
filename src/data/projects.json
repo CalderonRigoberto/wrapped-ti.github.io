@@ -1,0 +1,125 @@
+{
+  "year": 2024,
+  "department": "Tecnologías de la Información",
+  "summary": {
+    "totalProjects": 12,
+    "hoursInvested": 15840,
+    "teamMembers": 8,
+    "linesOfCode": 287500,
+    "deploymentsCount": 156,
+    "uptime": 99.97
+  },
+  "projects": [
+    {
+      "id": 1,
+      "name": "Portal de Gestión Interna",
+      "description": "Sistema centralizado para la gestión de recursos humanos, inventarios y solicitudes internas.",
+      "category": "Web Application",
+      "month": "Febrero",
+      "metrics": {
+        "usersImpacted": 450,
+        "timeSavedHours": 2400,
+        "efficiency": 67,
+        "satisfaction": 94
+      },
+      "technologies": ["React", "Node.js", "PostgreSQL", "Docker"],
+      "gradient": "magenta",
+      "highlight": true
+    },
+    {
+      "id": 2,
+      "name": "App Móvil Corporativa",
+      "description": "Aplicación móvil para empleados con acceso a información, notificaciones y servicios internos.",
+      "category": "Mobile App",
+      "month": "Abril",
+      "metrics": {
+        "usersImpacted": 380,
+        "downloads": 412,
+        "dailyActiveUsers": 285,
+        "satisfaction": 91
+      },
+      "technologies": ["React Native", "Firebase", "GraphQL"],
+      "gradient": "cyan",
+      "highlight": true
+    },
+    {
+      "id": 3,
+      "name": "Migración a la Nube",
+      "description": "Migración completa de infraestructura on-premise a servicios cloud con alta disponibilidad.",
+      "category": "Infrastructure",
+      "month": "Junio",
+      "metrics": {
+        "serversOptimized": 24,
+        "costReduction": 35,
+        "performanceBoost": 45,
+        "downtime": 0.03
+      },
+      "technologies": ["AWS", "Terraform", "Kubernetes", "GitHub Actions"],
+      "gradient": "purple",
+      "highlight": true
+    },
+    {
+      "id": 4,
+      "name": "Dashboard de Analytics",
+      "description": "Panel de control en tiempo real para visualización de KPIs y métricas de negocio.",
+      "category": "Data & Analytics",
+      "month": "Agosto",
+      "metrics": {
+        "usersImpacted": 65,
+        "reportsAutomated": 48,
+        "decisionTime": -60,
+        "dataPoints": 2500000
+      },
+      "technologies": ["Python", "Plotly", "Apache Airflow", "Snowflake"],
+      "gradient": "orange",
+      "highlight": true
+    },
+    {
+      "id": 5,
+      "name": "Automatización de Procesos",
+      "description": "Sistema de automatización RPA para tareas repetitivas en múltiples departamentos.",
+      "category": "Automation",
+      "month": "Octubre",
+      "metrics": {
+        "processesAutomated": 32,
+        "timeSavedHours": 5200,
+        "errorReduction": 89,
+        "roi": 340
+      },
+      "technologies": ["Python", "Selenium", "Azure Functions", "Power Automate"],
+      "gradient": "green",
+      "highlight": true
+    }
+  ],
+  "technologies": [
+    { "name": "React", "usage": 85, "category": "Frontend" },
+    { "name": "Node.js", "usage": 78, "category": "Backend" },
+    { "name": "Python", "usage": 72, "category": "Backend" },
+    { "name": "PostgreSQL", "usage": 65, "category": "Database" },
+    { "name": "AWS", "usage": 90, "category": "Cloud" },
+    { "name": "Docker", "usage": 88, "category": "DevOps" },
+    { "name": "Kubernetes", "usage": 62, "category": "DevOps" },
+    { "name": "TypeScript", "usage": 80, "category": "Language" }
+  ],
+  "timeline": [
+    { "month": "Enero", "event": "Planificación anual y roadmap de proyectos", "type": "planning" },
+    { "month": "Febrero", "event": "Lanzamiento Portal de Gestión Interna", "type": "launch" },
+    { "month": "Marzo", "event": "Inicio desarrollo App Móvil", "type": "development" },
+    { "month": "Abril", "event": "Lanzamiento App Móvil Corporativa", "type": "launch" },
+    { "month": "Mayo", "event": "Inicio proyecto Migración Cloud", "type": "development" },
+    { "month": "Junio", "event": "Migración a la Nube completada", "type": "launch" },
+    { "month": "Julio", "event": "Optimización de infraestructura", "type": "optimization" },
+    { "month": "Agosto", "event": "Lanzamiento Dashboard Analytics", "type": "launch" },
+    { "month": "Septiembre", "event": "Capacitación equipo en nuevas tecnologías", "type": "training" },
+    { "month": "Octubre", "event": "Automatización de Procesos en producción", "type": "launch" },
+    { "month": "Noviembre", "event": "Auditoría de seguridad completada", "type": "security" },
+    { "month": "Diciembre", "event": "Cierre de año y retrospectiva", "type": "planning" }
+  ],
+  "achievements": [
+    { "icon": "🏆", "title": "Mejor Tiempo de Respuesta", "value": "99.97% uptime" },
+    { "icon": "🚀", "title": "Más Despliegues", "value": "156 deployments" },
+    { "icon": "💡", "title": "Mayor Innovación", "value": "5 nuevos productos" },
+    { "icon": "👥", "title": "Usuarios Impactados", "value": "+1,200 empleados" }
+  ]
+}
+

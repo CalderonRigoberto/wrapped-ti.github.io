@@ -1,0 +1,318 @@
+---
+import data from '../data/projects.json';
+
+const { timeline } = data;
+
+const getEventColor = (type: string) => {
+  const colors: Record<string, string> = {
+    launch: 'var(--color-magenta)',
+    development: 'var(--color-cyan)',
+    planning: 'var(--color-purple)',
+    optimization: 'var(--color-green)',
+    training: 'var(--color-blue)',
+    security: 'var(--color-orange)'
+  };
+  return colors[type] || 'var(--color-text-secondary)';
+};
+
+const getEventIcon = (type: string) => {
+  const icons: Record<string, string> = {
+    launch: '🚀',
+    development: '💻',
+    planning: '📋',
+    optimization: '⚡',
+    training: '📚',
+    security: '🔒'
+  };
+  return icons[type] || '📌';
+};
+---
+
+<section class="timeline" id="timeline">
+  <div class="timeline-bg">
+    <div class="gradient-blob orange blob-timeline"></div>
+  </div>
+  
+  <div class="container">
+    <div class="timeline-header">
+      <span class="section-label fade-in">LÍNEA DE TIEMPO</span>
+      <h2 class="timeline-title fade-in stagger-1">
+        El <span class="text-gradient-orange">recorrido</span> de nuestro año
+      </h2>
+      <p class="timeline-subtitle fade-in stagger-2">
+        Mes a mes, así construimos el {data.year}
+      </p>
+    </div>
+    
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      
+      {timeline.map((item, index) => (
+        <div class={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+          <div class="timeline-content glass-card fade-in" style={`--event-color: ${getEventColor(item.type)}`}>
+            <span class="timeline-icon">{getEventIcon(item.type)}</span>
+            <span class="timeline-month">{item.month}</span>
+            <p class="timeline-event">{item.event}</p>
+          </div>
+          <div class="timeline-dot" style={`--dot-color: ${getEventColor(item.type)}`}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    min-height: 100vh;
+    position: relative;
+    background: var(--color-bg-section);
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+  }
+  
+  .timeline-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .blob-timeline {
+    width: 600px;
+    height: 600px;
+    top: 20%;
+    right: -200px;
+    opacity: 0.2;
+    animation: float 30s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(-30px, 30px);
+    }
+  }
+  
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-orange);
+    margin-bottom: 1rem;
+  }
+  
+  .timeline-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  
+  .timeline-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, 
+      var(--color-magenta) 0%, 
+      var(--color-cyan) 25%, 
+      var(--color-purple) 50%, 
+      var(--color-orange) 75%, 
+      var(--color-green) 100%
+    );
+    transform: translateX(-50%);
+  }
+  
+  .timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 40px 60px;
+  }
+  
+  .timeline-item.left {
+    left: 0;
+    text-align: right;
+  }
+  
+  .timeline-item.right {
+    left: 50%;
+    text-align: left;
+  }
+  
+  .timeline-content {
+    position: relative;
+    padding: 1.5rem;
+    border-left: 3px solid var(--event-color);
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+  
+  .timeline-content:hover {
+    transform: translateY(-5px);
+  }
+  
+  .timeline-icon {
+    position: absolute;
+    top: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .timeline-item.left .timeline-icon {
+    right: 1rem;
+  }
+  
+  .timeline-item.right .timeline-icon {
+    left: 1rem;
+  }
+  
+  .timeline-month {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--event-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  
+  .timeline-event {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+    padding-right: 2.5rem;
+  }
+  
+  .timeline-item.right .timeline-event {
+    padding-right: 0;
+    padding-left: 2.5rem;
+  }
+  
+  .timeline-dot {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: var(--dot-color);
+    border: 3px solid var(--color-bg-section);
+    border-radius: 50%;
+    top: 1.5rem;
+    z-index: 1;
+    box-shadow: 0 0 20px var(--dot-color);
+  }
+  
+  .timeline-item.left .timeline-dot {
+    right: -8px;
+  }
+  
+  .timeline-item.right .timeline-dot {
+    left: -8px;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 20px;
+    }
+    
+    .timeline-item {
+      width: 100%;
+      padding: 0 0 40px 50px;
+      text-align: left;
+    }
+    
+    .timeline-item.left,
+    .timeline-item.right {
+      left: 0;
+      text-align: left;
+    }
+    
+    .timeline-item.left .timeline-dot,
+    .timeline-item.right .timeline-dot {
+      left: 12px;
+      right: auto;
+    }
+    
+    .timeline-item.left .timeline-icon,
+    .timeline-item.right .timeline-icon {
+      left: 1rem;
+      right: auto;
+    }
+    
+    .timeline-event {
+      padding-right: 0;
+      padding-left: 2.5rem;
+    }
+    
+    .timeline-item.left .timeline-event {
+      padding-left: 2.5rem;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  gsap.registerPlugin(ScrollTrigger);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    timelineItems.forEach((item, index) => {
+      const isLeft = item.classList.contains('left');
+      
+      gsap.fromTo(item.querySelector('.timeline-content'),
+        { 
+          opacity: 0, 
+          x: isLeft ? 30 : -30
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+      
+      gsap.fromTo(item.querySelector('.timeline-dot'),
+        { scale: 0 },
+        {
+          scale: 1,
+          duration: 0.4,
+          ease: 'back.out(2)',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+  });
+</script>
+

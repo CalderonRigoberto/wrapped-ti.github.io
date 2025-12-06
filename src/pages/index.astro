@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Summary from '../components/Summary.astro';
+import TopProjects from '../components/TopProjects.astro';
+import Metrics from '../components/Metrics.astro';
+import TechStack from '../components/TechStack.astro';
+import Timeline from '../components/Timeline.astro';
+import Closing from '../components/Closing.astro';
+---
+
+<Layout title="TI Wrapped 2024 | Tecnologías de la Información">
+  <Hero />
+  <Summary />
+  <TopProjects />
+  <Metrics />
+  <TechStack />
+  <Timeline />
+  <Closing />
+</Layout>
+
+<style is:global>
+  /* Smooth scroll for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-dark);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Selection color */
+  ::selection {
+    background: rgba(255, 0, 110, 0.3);
+    color: var(--color-text-primary);
+  }
+</style>
+

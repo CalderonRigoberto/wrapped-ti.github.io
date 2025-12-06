@@ -1,0 +1,159 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import data from '../data/projects.json';
+
+const projects = data.projects;
+---
+
+<section class="top-projects" id="projects">
+  <div class="projects-bg">
+    <div class="gradient-blob magenta blob-projects-1"></div>
+    <div class="gradient-blob orange blob-projects-2"></div>
+  </div>
+  
+  <div class="container">
+    <div class="projects-header">
+      <span class="section-label fade-in">TOP PROYECTOS</span>
+      <h2 class="projects-title fade-in stagger-1">
+        Los proyectos que <span class="text-gradient-magenta">marcaron</span> el año
+      </h2>
+      <p class="projects-subtitle fade-in stagger-2">
+        Estas son las iniciativas más importantes que llevamos a cabo en {data.year}
+      </p>
+    </div>
+    
+    <div class="projects-grid">
+      {projects.map((project, index) => (
+        <div class={`project-wrapper fade-in stagger-${Math.min(index + 1, 5)}`}>
+          <ProjectCard project={project} index={index} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .top-projects {
+    min-height: 100vh;
+    position: relative;
+    background: var(--color-bg-dark);
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+  }
+  
+  .projects-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  
+  .blob-projects-1 {
+    width: 600px;
+    height: 600px;
+    top: 10%;
+    left: -200px;
+    opacity: 0.25;
+    animation: float 25s ease-in-out infinite;
+  }
+  
+  .blob-projects-2 {
+    width: 400px;
+    height: 400px;
+    bottom: 10%;
+    right: -100px;
+    opacity: 0.2;
+    animation: float 30s ease-in-out infinite reverse;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(30px, -30px);
+    }
+  }
+  
+  .projects-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-magenta);
+    margin-bottom: 1rem;
+  }
+  
+  .projects-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  
+  .projects-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .project-wrapper {
+    height: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  gsap.registerPlugin(ScrollTrigger);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const projectCards = document.querySelectorAll('.project-wrapper');
+    
+    projectCards.forEach((card, index) => {
+      gsap.fromTo(card,
+        { 
+          opacity: 0, 
+          y: 60,
+          scale: 0.95
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          delay: index * 0.1
+        }
+      );
+    });
+  });
+</script>
+
