@@ -68,15 +68,17 @@ const duplicatedTestimonials = [
 
   <div class="testimonials-marquee-wrapper">
     <div class="testimonials-marquee">
-      <div class="testimonials-track">
-        {
-          duplicatedTestimonials.map((testimonial, index) => (
-            <TestimonialCard
-              testimonial={testimonial}
-              index={index % enrichedTestimonials.length}
-            />
-          ))
-        }
+      <div class="testimonials-track-container">
+        <div class="testimonials-track">
+          {
+            duplicatedTestimonials.map((testimonial, index) => (
+              <TestimonialCard
+                testimonial={testimonial}
+                index={index % enrichedTestimonials.length}
+              />
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -160,15 +162,20 @@ const duplicatedTestimonials = [
   .testimonials-marquee-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     margin-top: 3rem;
-    padding: 2rem 0;
+    padding: 5rem 0 2rem 0;
   }
 
   .testimonials-marquee {
     position: relative;
     width: 100%;
     overflow: hidden;
+  }
+
+  .testimonials-track-container {
+    padding: 2rem 0;
+    overflow: visible;
   }
 
   .testimonials-track {
@@ -216,6 +223,10 @@ const duplicatedTestimonials = [
 
   @media (max-width: 768px) {
     .testimonials-marquee-wrapper {
+      padding: 4rem 0 1.5rem 0;
+    }
+
+    .testimonials-track-container {
       padding: 1.5rem 0;
     }
 
