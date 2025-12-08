@@ -7,3 +7,5 @@ gsap.registerPlugin(ScrollTrigger);
 // Export for use in components
 export { gsap, ScrollTrigger };
 
+
+

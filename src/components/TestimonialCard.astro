@@ -1,0 +1,270 @@
+---
+interface Props {
+  testimonial: {
+    id: number;
+    type: "video" | "text";
+    projectId?: number;
+    videoUrl?: string;
+    comment: string;
+    author: string;
+    role: string;
+    projectName?: string;
+  };
+  index: number;
+}
+
+const { testimonial, index } = Astro.props;
+
+// Gradient colors array for variety
+const gradients = ["magenta", "cyan", "purple", "orange", "green"];
+const gradientClass = `gradient-${gradients[index % gradients.length]}`;
+
+// Helper function to convert YouTube URL to embed format
+const getEmbedUrl = (url: string): string => {
+  if (url.includes("youtube.com/embed")) {
+    return url;
+  }
+  if (url.includes("youtube.com/watch")) {
+    const videoId = url.split("v=")[1]?.split("&")[0];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  }
+  if (url.includes("youtu.be/")) {
+    const videoId = url.split("youtu.be/")[1]?.split("?")[0];
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  }
+  if (url.includes("vimeo.com")) {
+    const videoId = url.split("vimeo.com/")[1]?.split("?")[0];
+    return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+  }
+  return url;
+};
+---
+
+<article class={`testimonial-card ${gradientClass}`}>
+  {
+    testimonial.type === "video" && testimonial.videoUrl && (
+      <div class="testimonial-video">
+        <iframe
+          src={getEmbedUrl(testimonial.videoUrl)}
+          title={`Video testimonial - ${testimonial.author}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+
+  <div class="testimonial-content">
+    <div class="testimonial-comment">
+      <svg
+        class="quote-icon"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 21C3 17.4 5.4 15 9 15C12.6 15 15 17.4 15 21V21H3V21Z"
+          fill="currentColor"
+          opacity="0.3"></path>
+        <path
+          d="M6 7C6 5.9 6.9 5 8 5C9.1 5 10 5.9 10 7C10 8.1 9.1 9 8 9C6.9 9 6 8.1 6 7Z"
+          fill="currentColor"></path>
+        <path
+          d="M14 7C14 5.9 14.9 5 16 5C17.1 5 18 5.9 18 7C18 8.1 17.1 9 16 9C14.9 9 14 8.1 14 7Z"
+          fill="currentColor"></path>
+        <path
+          d="M9 12C9 10.9 9.9 10 11 10C12.1 10 13 10.9 13 12C13 13.1 12.1 14 11 14C9.9 14 9 13.1 9 12Z"
+          fill="currentColor"></path>
+      </svg>
+      <p>{testimonial.comment}</p>
+    </div>
+
+    <div class="testimonial-author">
+      <div class="author-info">
+        <span class="author-name">{testimonial.author}</span>
+        <span class="author-role">{testimonial.role}</span>
+      </div>
+      {
+        testimonial.projectName && (
+          <span class="project-badge">{testimonial.projectName}</span>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="card-glow"></div>
+</article>
+
+<style
+  define:vars={{
+    gradientStart: `var(--color-${gradients[index % gradients.length]})`,
+  }}
+>
+  .testimonial-card {
+    position: relative;
+    background: var(--color-bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow: hidden;
+    min-width: 380px;
+    max-width: 450px;
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  .testimonial-card:hover .card-glow {
+    opacity: 0.15;
+  }
+
+  .card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+      180deg,
+      var(--gradientStart) 0%,
+      transparent 100%
+    );
+    opacity: 0.08;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .testimonial-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-video iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .testimonial-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-comment {
+    position: relative;
+  }
+
+  .quote-icon {
+    position: absolute;
+    top: -0.5rem;
+    left: -0.5rem;
+    width: 32px;
+    height: 32px;
+    color: var(--gradientStart);
+    opacity: 0.3;
+    transform: rotate(180deg);
+  }
+
+  .testimonial-comment p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    padding-left: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .author-name {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .author-role {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .project-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gradientStart);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.375rem 0.75rem;
+    border-radius: 100px;
+    align-self: flex-start;
+  }
+
+  /* Gradient variations */
+  .gradient-magenta {
+    --gradientStart: var(--color-magenta);
+  }
+
+  .gradient-cyan {
+    --gradientStart: var(--color-cyan);
+  }
+
+  .gradient-purple {
+    --gradientStart: var(--color-purple);
+  }
+
+  .gradient-orange {
+    --gradientStart: var(--color-orange);
+  }
+
+  .gradient-green {
+    --gradientStart: var(--color-green);
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-card {
+      min-width: 320px;
+      max-width: 380px;
+      padding: 1.25rem;
+    }
+
+    .testimonial-comment p {
+      font-size: 0.9375rem;
+    }
+  }
+</style>

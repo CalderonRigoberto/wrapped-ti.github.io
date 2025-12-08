@@ -1,0 +1,276 @@
+---
+import TestimonialCard from "./TestimonialCard.astro";
+import testimonialsData from "../data/testimonials.json";
+import data from "../data/projects.json";
+
+type Testimonial = {
+  id: number;
+  type: "video" | "text";
+  projectId?: number;
+  videoUrl?: string;
+  comment: string;
+  author: string;
+  role: string;
+  projectName?: string;
+};
+
+const testimonials = testimonialsData.testimonials;
+
+// Enrich testimonials with project data if projectId exists
+const enrichedTestimonials: Testimonial[] = testimonials.map((testimonial) => {
+  const enriched: Testimonial = {
+    id: testimonial.id,
+    type: testimonial.type as "video" | "text",
+    projectId: testimonial.projectId,
+    videoUrl: testimonial.videoUrl,
+    comment: testimonial.comment,
+    author: testimonial.author,
+    role: testimonial.role,
+    projectName: testimonial.projectName,
+  };
+
+  if (testimonial.projectId) {
+    const project = data.projects.find((p) => p.id === testimonial.projectId);
+    enriched.projectName = project?.name || testimonial.projectName;
+  }
+
+  return enriched;
+});
+
+// Duplicate testimonials for seamless infinite scroll
+const duplicatedTestimonials = [
+  ...enrichedTestimonials,
+  ...enrichedTestimonials,
+];
+---
+
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-bg">
+    <div class="gradient-blob purple blob-testimonials-1"></div>
+    <div class="gradient-blob cyan blob-testimonials-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="section-label fade-in">TESTIMONIOS</span>
+      <h2 class="testimonials-title fade-in stagger-1">
+        Lo que dicen sobre nuestros <span class="text-gradient-purple"
+          >proyectos</span
+        >
+      </h2>
+      <p class="testimonials-subtitle fade-in stagger-2">
+        Testimonios reales de quienes han trabajado con nuestras soluciones en {
+          data.year
+        }
+      </p>
+    </div>
+  </div>
+
+  <div class="testimonials-marquee-wrapper">
+    <div class="testimonials-marquee">
+      <div class="testimonials-track">
+        {
+          duplicatedTestimonials.map((testimonial, index) => (
+            <TestimonialCard
+              testimonial={testimonial}
+              index={index % enrichedTestimonials.length}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    min-height: 100vh;
+    position: relative;
+    background: var(--color-bg-dark);
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .testimonials-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .blob-testimonials-1 {
+    width: 500px;
+    height: 500px;
+    top: 15%;
+    left: -150px;
+    opacity: 0.2;
+    animation: float 25s ease-in-out infinite;
+  }
+
+  .blob-testimonials-2 {
+    width: 400px;
+    height: 400px;
+    bottom: 15%;
+    right: -100px;
+    opacity: 0.15;
+    animation: float 30s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(30px, -30px);
+    }
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-purple);
+    margin-bottom: 1rem;
+  }
+
+  .testimonials-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .testimonials-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  .testimonials-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 3rem;
+    padding: 2rem 0;
+  }
+
+  .testimonials-marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .testimonials-track {
+    display: flex;
+    gap: 2rem;
+    width: fit-content;
+    animation: marquee 60s linear infinite;
+    will-change: transform;
+  }
+
+  .testimonials-marquee-wrapper:hover .testimonials-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Gradient fade edges */
+  .testimonials-marquee-wrapper::before,
+  .testimonials-marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .testimonials-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg-dark), transparent);
+  }
+
+  .testimonials-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg-dark), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-marquee-wrapper {
+      padding: 1.5rem 0;
+    }
+
+    .testimonials-track {
+      gap: 1.5rem;
+      animation-duration: 40s;
+    }
+
+    .testimonials-marquee-wrapper::before,
+    .testimonials-marquee-wrapper::after {
+      width: 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonials-track {
+      animation: none;
+    }
+
+    .testimonials-marquee-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .testimonials-marquee-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from "../scripts/gsap-init";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector(".testimonials-header");
+
+    if (header) {
+      gsap.fromTo(
+        header,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: header,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  });
+</script>

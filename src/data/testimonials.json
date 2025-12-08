@@ -1,0 +1,76 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "type": "video",
+      "projectId": 1,
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "comment": "El Portal de Gestión Interna ha transformado completamente nuestra forma de trabajar. La eficiencia ha aumentado significativamente.",
+      "author": "María González",
+      "role": "Directora de Recursos Humanos",
+      "projectName": "Portal de Gestión Interna"
+    },
+    {
+      "id": 2,
+      "type": "text",
+      "projectId": 2,
+      "comment": "La aplicación móvil es intuitiva y ha mejorado la comunicación interna. Los empleados están muy satisfechos con la experiencia.",
+      "author": "Carlos Ramírez",
+      "role": "Gerente de Operaciones",
+      "projectName": "App Móvil Corporativa"
+    },
+    {
+      "id": 3,
+      "type": "video",
+      "projectId": 3,
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "comment": "La migración a la nube fue un éxito total. Redujimos costos y mejoramos el rendimiento de manera impresionante.",
+      "author": "Ana Martínez",
+      "role": "CTO",
+      "projectName": "Migración a la Nube"
+    },
+    {
+      "id": 4,
+      "type": "text",
+      "comment": "El equipo de TI ha sido excepcional este año. Su dedicación y profesionalismo se reflejan en cada proyecto entregado.",
+      "author": "Roberto Sánchez",
+      "role": "CEO"
+    },
+    {
+      "id": 5,
+      "type": "video",
+      "projectId": 4,
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "comment": "El Dashboard de Analytics nos permite tomar decisiones basadas en datos en tiempo real. Es una herramienta invaluable.",
+      "author": "Laura Fernández",
+      "role": "Directora de Analytics",
+      "projectName": "Dashboard de Analytics"
+    },
+    {
+      "id": 6,
+      "type": "text",
+      "projectId": 5,
+      "comment": "La automatización de procesos ha liberado tiempo valioso para que nuestro equipo se enfoque en tareas estratégicas.",
+      "author": "Diego Morales",
+      "role": "Gerente de Procesos",
+      "projectName": "Automatización de Procesos"
+    },
+    {
+      "id": 7,
+      "type": "text",
+      "comment": "La innovación constante del departamento de TI nos mantiene a la vanguardia tecnológica. Excelente trabajo en 2024.",
+      "author": "Patricia López",
+      "role": "Directora de Innovación"
+    },
+    {
+      "id": 8,
+      "type": "video",
+      "projectId": 2,
+      "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      "comment": "La app móvil ha mejorado significativamente la productividad de nuestros empleados. Muy recomendable.",
+      "author": "Fernando Torres",
+      "role": "Líder de Producto",
+      "projectName": "App Móvil Corporativa"
+    }
+  ]
+}
