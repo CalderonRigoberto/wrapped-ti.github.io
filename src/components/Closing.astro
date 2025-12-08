@@ -2,6 +2,8 @@
 import data from "../data/projects.json";
 
 const nextYear = data.year + 1;
+const baseUrl = import.meta.env.BASE_URL;
+const logoPath = `${baseUrl}images/vise-logo-60.png`;
 ---
 
 <section class="closing" id="closing">
@@ -39,6 +41,14 @@ const nextYear = data.year + 1;
     </div>
 
     <div class="closing-credits fade-in stagger-4">
+      <div class="credits-logo-wrapper">
+        <img
+          src={logoPath}
+          alt="VISE Logo"
+          class="credits-logo"
+          loading="lazy"
+        />
+      </div>
       <p>Con cariño, el equipo de</p>
       <p class="credits-team">Tecnologías de la Información</p>
     </div>
@@ -231,6 +241,37 @@ const nextYear = data.year + 1;
     margin-top: 2rem;
     color: var(--color-text-muted);
     font-size: 0.9375rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .credits-logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .credits-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s var(--ease-out-expo);
+    filter: brightness(1);
+    margin: 0 auto;
+    display: block;
+  }
+
+  .credits-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .credits-team {
@@ -238,7 +279,7 @@ const nextYear = data.year + 1;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    margin-top: 0.5rem;
+    margin-top: 0;
   }
 
   .scroll-to-top {
@@ -430,6 +471,19 @@ const nextYear = data.year + 1;
       if (confettiBtn) {
         confettiBtn.addEventListener("click", triggerConfetti);
       }
+    }
+
+    // Animate logo in closing section
+    const creditsLogo = document.querySelector(".credits-logo");
+    if (creditsLogo) {
+      ScrollTrigger.create({
+        trigger: creditsLogo,
+        start: "top 85%",
+        onEnter: () => {
+          creditsLogo.classList.add("visible");
+        },
+        once: true,
+      });
     }
   });
 </script>

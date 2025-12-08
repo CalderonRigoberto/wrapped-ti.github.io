@@ -1,10 +1,15 @@
 ---
+import Header from "../components/Header.astro";
+
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = "TI Wrapped 2025 - Resumen anual del departamento de TI" } = Astro.props;
+const {
+  title,
+  description = "TI Wrapped 2025 - Resumen anual del departamento de TI",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -14,13 +19,17 @@ const { title, description = "TI Wrapped 2025 - Resumen anual del departamento d
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/wrapped-ti.github.io/favicon.svg" />
-    
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/wrapped-ti.github.io/favicon.svg"
+    />
+
     <!-- Preconnect to font sources -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    
+
     <title>{title}</title>
   </head>
   <body>
@@ -28,81 +37,89 @@ const { title, description = "TI Wrapped 2025 - Resumen anual del departamento d
     <div class="scroll-progress">
       <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
     </div>
-    
+
+    <Header />
+
     <main>
       <slot />
     </main>
-    
+
     <!-- GSAP Scripts -->
     <script>
       // Ensure script runs even if DOMContentLoaded already fired
       const initScripts = () => {
         // Scroll progress bar (works without GSAP)
-        const progressBar = document.getElementById('scroll-progress-bar');
-        
+        const progressBar = document.getElementById("scroll-progress-bar");
+
         if (progressBar) {
-          window.addEventListener('scroll', () => {
+          window.addEventListener("scroll", () => {
             const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const docHeight =
+              document.documentElement.scrollHeight - window.innerHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
             progressBar.style.width = `${scrollPercent}%`;
           });
         }
-        
+
         // Animate elements on scroll - fallback for elements that need .visible class
         const animateOnScroll = () => {
-          const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
-          
+          const elements = document.querySelectorAll(
+            ".fade-in, .slide-in-left, .slide-in-right, .scale-in"
+          );
+
           // Use Intersection Observer for better performance
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-              }
-            });
-          }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -15% 0px'
-          });
-          
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.1,
+              rootMargin: "0px 0px -15% 0px",
+            }
+          );
+
           elements.forEach((el) => {
             observer.observe(el);
           });
         };
-        
+
         // Run immediately and also on DOMContentLoaded
         animateOnScroll();
-        
+
         // Counter animation for metrics (works without GSAP)
         window.animateCounter = (element, target, duration = 2000) => {
           const start = 0;
           const startTime = performance.now();
-          
+
           const updateCounter = (currentTime) => {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            
+
             // Easing function (ease-out-expo)
             const easeOutExpo = 1 - Math.pow(2, -10 * progress);
             const current = Math.floor(start + (target - start) * easeOutExpo);
-            
-            element.textContent = current.toLocaleString('es-ES');
-            
+
+            element.textContent = current.toLocaleString("es-ES");
+
             if (progress < 1) {
               requestAnimationFrame(updateCounter);
             } else {
-              element.textContent = target.toLocaleString('es-ES');
+              element.textContent = target.toLocaleString("es-ES");
             }
           };
-          
+
           requestAnimationFrame(updateCounter);
         };
       };
-      
+
       // Run immediately if DOM is ready, otherwise wait
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScripts);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initScripts);
       } else {
         initScripts();
       }
@@ -111,6 +128,5 @@ const { title, description = "TI Wrapped 2025 - Resumen anual del departamento d
 </html>
 
 <style is:global>
-  @import '../styles/global.css';
+  @import "../styles/global.css";
 </style>
-

@@ -66,6 +66,13 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-bg-dark);
   overflow-x: hidden;
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
 }
 
 /* ===== TYPOGRAPHY ===== */

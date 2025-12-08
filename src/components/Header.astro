@@ -1,0 +1,100 @@
+---
+const baseUrl = import.meta.env.BASE_URL;
+const logoPath = `${baseUrl}images/vise-logo-60.png`;
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-container">
+    <a href="#hero" class="header-logo-link" aria-label="Ir al inicio">
+      <img src={logoPath} alt="VISE Logo" class="header-logo" loading="eager" />
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .site-header.scrolled {
+    background: rgba(10, 10, 10, 0.9);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .header-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 1rem var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .header-logo-link:hover {
+    transform: scale(1.05);
+  }
+
+  .header-logo {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(1);
+    transition: filter 0.3s ease;
+  }
+
+  .header-logo-link:hover .header-logo {
+    filter: brightness(1.1);
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.75rem var(--container-padding);
+    }
+
+    .header-logo {
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("site-header");
+
+    if (header) {
+      let lastScroll = 0;
+
+      const handleScroll = () => {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        lastScroll = currentScroll;
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      handleScroll(); // Check initial state
+    }
+  });
+</script>
