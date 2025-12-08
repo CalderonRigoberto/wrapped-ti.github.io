@@ -1,5 +1,5 @@
 ---
-import data from '../data/projects.json';
+import data from "../data/projects.json";
 
 const nextYear = data.year + 1;
 ---
@@ -10,21 +10,26 @@ const nextYear = data.year + 1;
     <div class="gradient-blob cyan blob-closing-2"></div>
     <div class="gradient-blob purple blob-closing-3"></div>
   </div>
-  
+
   <div class="container closing-content">
-    <div class="closing-badge scale-in">
+    <button
+      class="closing-badge scale-in"
+      id="confetti-btn"
+      aria-label="Activar confeti"
+    >
       <span>🎉</span>
-    </div>
-    
+    </button>
+
     <h2 class="closing-title fade-in stagger-1">
-      Gracias por un <span class="text-gradient-magenta">increíble</span> {data.year}
+      Gracias por un <span class="text-gradient-magenta">increíble</span>
+      {data.year}
     </h2>
-    
+
     <p class="closing-subtitle fade-in stagger-2">
-      Juntos transformamos ideas en realidad, 
-      resolvimos desafíos y construimos el futuro digital de nuestra empresa.
+      Juntos transformamos ideas en realidad, resolvimos desafíos y construimos
+      el futuro digital de nuestra empresa.
     </p>
-    
+
     <div class="closing-cta fade-in stagger-3">
       <div class="cta-text">
         <span class="cta-label">¿LISTOS PARA</span>
@@ -32,22 +37,37 @@ const nextYear = data.year + 1;
         <span class="cta-label">?</span>
       </div>
     </div>
-    
+
     <div class="closing-credits fade-in stagger-4">
       <p>Con cariño, el equipo de</p>
       <p class="credits-team">Tecnologías de la Información</p>
     </div>
-    
+
     <div class="scroll-to-top fade-in stagger-5">
-      <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Volver al inicio">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <button
+        class="scroll-top-btn"
+        id="scroll-top-btn"
+        aria-label="Volver al inicio"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 19V5M12 5L5 12M12 5L19 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
         <span>Volver al inicio</span>
       </button>
     </div>
   </div>
-  
+
   <!-- Confetti canvas -->
   <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 </section>
@@ -63,13 +83,13 @@ const nextYear = data.year + 1;
     overflow: hidden;
     padding: var(--section-padding) 0;
   }
-  
+
   .closing-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
   }
-  
+
   .blob-closing-1 {
     width: 500px;
     height: 500px;
@@ -77,7 +97,7 @@ const nextYear = data.year + 1;
     left: -150px;
     animation: pulse-glow 8s ease-in-out infinite;
   }
-  
+
   .blob-closing-2 {
     width: 400px;
     height: 400px;
@@ -85,7 +105,7 @@ const nextYear = data.year + 1;
     right: -100px;
     animation: pulse-glow 10s ease-in-out infinite reverse;
   }
-  
+
   .blob-closing-3 {
     width: 300px;
     height: 300px;
@@ -94,9 +114,10 @@ const nextYear = data.year + 1;
     transform: translate(-50%, -50%);
     animation: pulse-glow 12s ease-in-out infinite;
   }
-  
+
   @keyframes pulse-glow {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0.3;
       filter: blur(80px);
     }
@@ -105,7 +126,7 @@ const nextYear = data.year + 1;
       filter: blur(100px);
     }
   }
-  
+
   .closing-content {
     position: relative;
     z-index: 1;
@@ -115,7 +136,7 @@ const nextYear = data.year + 1;
     align-items: center;
     gap: 2rem;
   }
-  
+
   .closing-badge {
     width: 80px;
     height: 80px;
@@ -128,47 +149,63 @@ const nextYear = data.year + 1;
     border-radius: 50%;
     font-size: 2.5rem;
     animation: bounce-soft 3s ease-in-out infinite;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out-expo);
+    padding: 0;
+    margin: 0;
   }
-  
+
+  .closing-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+  }
+
+  .closing-badge:active {
+    transform: scale(0.95);
+  }
+
   @keyframes bounce-soft {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0);
     }
     50% {
       transform: translateY(-10px);
     }
   }
-  
+
   .closing-title {
     font-size: clamp(2rem, 6vw, 5rem);
     max-width: 800px;
     line-height: 1.1;
   }
-  
+
   .closing-subtitle {
     font-size: clamp(1rem, 2vw, 1.375rem);
     color: var(--color-text-secondary);
     max-width: 600px;
     line-height: 1.7;
   }
-  
+
   .closing-cta {
     margin: 2rem 0;
   }
-  
+
   .cta-text {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .cta-label {
     font-family: var(--font-display);
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 600;
     color: var(--color-text-secondary);
   }
-  
+
   .cta-year {
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 6rem);
@@ -179,22 +216,23 @@ const nextYear = data.year + 1;
     background-clip: text;
     animation: glow-text 3s ease-in-out infinite;
   }
-  
+
   @keyframes glow-text {
-    0%, 100% {
+    0%,
+    100% {
       filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.3));
     }
     50% {
       filter: drop-shadow(0 0 40px rgba(255, 0, 110, 0.5));
     }
   }
-  
+
   .closing-credits {
     margin-top: 2rem;
     color: var(--color-text-muted);
     font-size: 0.9375rem;
   }
-  
+
   .credits-team {
     font-family: var(--font-display);
     font-size: 1.25rem;
@@ -202,11 +240,11 @@ const nextYear = data.year + 1;
     color: var(--color-text-primary);
     margin-top: 0.5rem;
   }
-  
+
   .scroll-to-top {
     margin-top: 3rem;
   }
-  
+
   .scroll-top-btn {
     display: flex;
     align-items: center;
@@ -222,22 +260,22 @@ const nextYear = data.year + 1;
     cursor: pointer;
     transition: all 0.3s var(--ease-out-expo);
   }
-  
+
   .scroll-top-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     color: var(--color-text-primary);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
-  
+
   .scroll-top-btn svg {
     transition: transform 0.3s ease;
   }
-  
+
   .scroll-top-btn:hover svg {
     transform: translateY(-3px);
   }
-  
+
   .confetti-canvas {
     position: absolute;
     top: 0;
@@ -247,13 +285,13 @@ const nextYear = data.year + 1;
     pointer-events: none;
     z-index: 2;
   }
-  
+
   @media (max-width: 768px) {
     .cta-text {
       flex-direction: column;
       gap: 0.5rem;
     }
-    
+
     .closing-badge {
       width: 60px;
       height: 60px;
@@ -263,36 +301,39 @@ const nextYear = data.year + 1;
 </style>
 
 <script>
-  import { gsap, ScrollTrigger } from '../scripts/gsap-init';
-  
-  document.addEventListener('DOMContentLoaded', () => {
+  import { gsap, ScrollTrigger } from "../scripts/gsap-init";
+
+  document.addEventListener("DOMContentLoaded", () => {
     // Scroll to top functionality
-    const scrollTopBtn = document.getElementById('scroll-top-btn');
-    
+    const scrollTopBtn = document.getElementById("scroll-top-btn");
+
     if (scrollTopBtn) {
-      scrollTopBtn.addEventListener('click', () => {
+      scrollTopBtn.addEventListener("click", () => {
         window.scrollTo({
           top: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       });
     }
-    
-    // Confetti animation on scroll into closing section
-    const canvas = document.getElementById('confetti-canvas') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
-    
+
+    // Confetti animation
+    const canvas = document.getElementById(
+      "confetti-canvas"
+    ) as HTMLCanvasElement;
+    const ctx = canvas?.getContext("2d");
+    const confettiBtn = document.getElementById("confetti-btn");
+
     if (canvas && ctx) {
-      let confettiTriggered = false;
-      
+      let animationId: number | null = null;
+
       const resizeCanvas = () => {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
       };
-      
+
       resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-      
+      window.addEventListener("resize", resizeCanvas);
+
       interface Particle {
         x: number;
         y: number;
@@ -304,10 +345,17 @@ const nextYear = data.year + 1;
         rotationSpeed: number;
         opacity: number;
       }
-      
+
       const particles: Particle[] = [];
-      const colors = ['#ff006e', '#00f5d4', '#8338ec', '#ff9e00', '#3a86ff', '#9be15d'];
-      
+      const colors = [
+        "#ff006e",
+        "#00f5d4",
+        "#8338ec",
+        "#ff9e00",
+        "#3a86ff",
+        "#9be15d",
+      ];
+
       const createConfetti = () => {
         for (let i = 0; i < 150; i++) {
           particles.push({
@@ -319,28 +367,28 @@ const nextYear = data.year + 1;
             color: colors[Math.floor(Math.random() * colors.length)],
             rotation: Math.random() * 360,
             rotationSpeed: (Math.random() - 0.5) * 10,
-            opacity: 1
+            opacity: 1,
           });
         }
       };
-      
+
       const animateConfetti = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+
         for (let i = particles.length - 1; i >= 0; i--) {
           const p = particles[i];
-          
+
           p.x += p.speedX;
           p.y += p.speedY;
           p.rotation += p.rotationSpeed;
           p.speedY += 0.05; // gravity
           p.opacity -= 0.003;
-          
+
           if (p.opacity <= 0 || p.y > canvas.height) {
             particles.splice(i, 1);
             continue;
           }
-          
+
           ctx.save();
           ctx.translate(p.x, p.y);
           ctx.rotate((p.rotation * Math.PI) / 180);
@@ -349,25 +397,39 @@ const nextYear = data.year + 1;
           ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size / 2);
           ctx.restore();
         }
-        
+
         if (particles.length > 0) {
-          requestAnimationFrame(animateConfetti);
+          animationId = requestAnimationFrame(animateConfetti);
+        } else {
+          animationId = null;
         }
       };
-      
+
+      const triggerConfetti = () => {
+        createConfetti();
+        if (!animationId) {
+          animateConfetti();
+        }
+      };
+
+      // Confetti on scroll into closing section (only once)
+      let scrollConfettiTriggered = false;
       ScrollTrigger.create({
-        trigger: '.closing',
-        start: 'top 60%',
+        trigger: ".closing",
+        start: "top 60%",
         onEnter: () => {
-          if (!confettiTriggered) {
-            confettiTriggered = true;
-            createConfetti();
-            animateConfetti();
+          if (!scrollConfettiTriggered) {
+            scrollConfettiTriggered = true;
+            triggerConfetti();
           }
         },
-        once: true
+        once: true,
       });
+
+      // Confetti on button click (can be triggered multiple times)
+      if (confettiBtn) {
+        confettiBtn.addEventListener("click", triggerConfetti);
+      }
     }
   });
 </script>
-
