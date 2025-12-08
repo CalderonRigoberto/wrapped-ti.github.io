@@ -2,7 +2,7 @@
   "name": "vise-wrapped",
   "type": "module",
   "version": "1.0.0",
-  "description": "TI Wrapped 2024 - Resumen anual del departamento de TI",
+  "description": "TI Wrapped 2025 - Resumen anual del departamento de TI",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -19,4 +19,3 @@
     "typescript": "^5.3.0"
   }
 }
-

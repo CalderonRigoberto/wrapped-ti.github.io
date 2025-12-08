@@ -1,5 +1,5 @@
 {
-  "year": 2024,
+  "year": 2025,
   "department": "Tecnologías de la Información",
   "summary": {
     "totalProjects": 12,
@@ -22,7 +22,12 @@
         "efficiency": 67,
         "satisfaction": 94
       },
-      "technologies": ["React", "Node.js", "PostgreSQL", "Docker"],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Docker"
+      ],
       "gradient": "magenta",
       "highlight": true
     },
@@ -38,7 +43,11 @@
         "dailyActiveUsers": 285,
         "satisfaction": 91
       },
-      "technologies": ["React Native", "Firebase", "GraphQL"],
+      "technologies": [
+        "React Native",
+        "Firebase",
+        "GraphQL"
+      ],
       "gradient": "cyan",
       "highlight": true
     },
@@ -54,7 +63,12 @@
         "performanceBoost": 45,
         "downtime": 0.03
       },
-      "technologies": ["AWS", "Terraform", "Kubernetes", "GitHub Actions"],
+      "technologies": [
+        "AWS",
+        "Terraform",
+        "Kubernetes",
+        "GitHub Actions"
+      ],
       "gradient": "purple",
       "highlight": true
     },
@@ -70,7 +84,12 @@
         "decisionTime": -60,
         "dataPoints": 2500000
       },
-      "technologies": ["Python", "Plotly", "Apache Airflow", "Snowflake"],
+      "technologies": [
+        "Python",
+        "Plotly",
+        "Apache Airflow",
+        "Snowflake"
+      ],
       "gradient": "orange",
       "highlight": true
     },
@@ -86,40 +105,140 @@
         "errorReduction": 89,
         "roi": 340
       },
-      "technologies": ["Python", "Selenium", "Azure Functions", "Power Automate"],
+      "technologies": [
+        "Python",
+        "Selenium",
+        "Azure Functions",
+        "Power Automate"
+      ],
       "gradient": "green",
       "highlight": true
     }
   ],
   "technologies": [
-    { "name": "React", "usage": 85, "category": "Frontend" },
-    { "name": "Node.js", "usage": 78, "category": "Backend" },
-    { "name": "Python", "usage": 72, "category": "Backend" },
-    { "name": "PostgreSQL", "usage": 65, "category": "Database" },
-    { "name": "AWS", "usage": 90, "category": "Cloud" },
-    { "name": "Docker", "usage": 88, "category": "DevOps" },
-    { "name": "Kubernetes", "usage": 62, "category": "DevOps" },
-    { "name": "TypeScript", "usage": 80, "category": "Language" }
+    {
+      "name": "React",
+      "usage": 85,
+      "category": "Frontend"
+    },
+    {
+      "name": "Node.js",
+      "usage": 78,
+      "category": "Backend"
+    },
+    {
+      "name": "Python",
+      "usage": 72,
+      "category": "Backend"
+    },
+    {
+      "name": "PostgreSQL",
+      "usage": 65,
+      "category": "Database"
+    },
+    {
+      "name": "AWS",
+      "usage": 90,
+      "category": "Cloud"
+    },
+    {
+      "name": "Docker",
+      "usage": 88,
+      "category": "DevOps"
+    },
+    {
+      "name": "Kubernetes",
+      "usage": 62,
+      "category": "DevOps"
+    },
+    {
+      "name": "TypeScript",
+      "usage": 80,
+      "category": "Language"
+    }
   ],
   "timeline": [
-    { "month": "Enero", "event": "Planificación anual y roadmap de proyectos", "type": "planning" },
-    { "month": "Febrero", "event": "Lanzamiento Portal de Gestión Interna", "type": "launch" },
-    { "month": "Marzo", "event": "Inicio desarrollo App Móvil", "type": "development" },
-    { "month": "Abril", "event": "Lanzamiento App Móvil Corporativa", "type": "launch" },
-    { "month": "Mayo", "event": "Inicio proyecto Migración Cloud", "type": "development" },
-    { "month": "Junio", "event": "Migración a la Nube completada", "type": "launch" },
-    { "month": "Julio", "event": "Optimización de infraestructura", "type": "optimization" },
-    { "month": "Agosto", "event": "Lanzamiento Dashboard Analytics", "type": "launch" },
-    { "month": "Septiembre", "event": "Capacitación equipo en nuevas tecnologías", "type": "training" },
-    { "month": "Octubre", "event": "Automatización de Procesos en producción", "type": "launch" },
-    { "month": "Noviembre", "event": "Auditoría de seguridad completada", "type": "security" },
-    { "month": "Diciembre", "event": "Cierre de año y retrospectiva", "type": "planning" }
+    {
+      "month": "Enero",
+      "event": "Planificación anual y roadmap de proyectos",
+      "type": "planning"
+    },
+    {
+      "month": "Febrero",
+      "event": "Lanzamiento Portal de Gestión Interna",
+      "type": "launch"
+    },
+    {
+      "month": "Marzo",
+      "event": "Inicio desarrollo App Móvil",
+      "type": "development"
+    },
+    {
+      "month": "Abril",
+      "event": "Lanzamiento App Móvil Corporativa",
+      "type": "launch"
+    },
+    {
+      "month": "Mayo",
+      "event": "Inicio proyecto Migración Cloud",
+      "type": "development"
+    },
+    {
+      "month": "Junio",
+      "event": "Migración a la Nube completada",
+      "type": "launch"
+    },
+    {
+      "month": "Julio",
+      "event": "Optimización de infraestructura",
+      "type": "optimization"
+    },
+    {
+      "month": "Agosto",
+      "event": "Lanzamiento Dashboard Analytics",
+      "type": "launch"
+    },
+    {
+      "month": "Septiembre",
+      "event": "Capacitación equipo en nuevas tecnologías",
+      "type": "training"
+    },
+    {
+      "month": "Octubre",
+      "event": "Automatización de Procesos en producción",
+      "type": "launch"
+    },
+    {
+      "month": "Noviembre",
+      "event": "Auditoría de seguridad completada",
+      "type": "security"
+    },
+    {
+      "month": "Diciembre",
+      "event": "Cierre de año y retrospectiva",
+      "type": "planning"
+    }
   ],
   "achievements": [
-    { "icon": "🏆", "title": "Mejor Tiempo de Respuesta", "value": "99.97% uptime" },
-    { "icon": "🚀", "title": "Más Despliegues", "value": "156 deployments" },
-    { "icon": "💡", "title": "Mayor Innovación", "value": "5 nuevos productos" },
-    { "icon": "👥", "title": "Usuarios Impactados", "value": "+1,200 empleados" }
+    {
+      "icon": "🏆",
+      "title": "Mejor Tiempo de Respuesta",
+      "value": "99.97% uptime"
+    },
+    {
+      "icon": "🚀",
+      "title": "Más Despliegues",
+      "value": "156 deployments"
+    },
+    {
+      "icon": "💡",
+      "title": "Mayor Innovación",
+      "value": "5 nuevos productos"
+    },
+    {
+      "icon": "👥",
+      "title": "Usuarios Impactados",
+      "value": "+1,200 empleados"
+    }
   ]
 }
-

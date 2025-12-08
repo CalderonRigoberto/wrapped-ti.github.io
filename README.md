@@ -1,4 +1,4 @@
-# TI Wrapped 2024
+# TI Wrapped 2025
 
 Un sitio web estilo "Spotify Wrapped" para mostrar los logros y proyectos del departamento de Tecnologías de la Información.
 
@@ -69,6 +69,7 @@ vise-wrapped/
 ### Datos de Proyectos
 
 Edita el archivo `src/data/projects.json` para personalizar:
+
 - Información general del año
 - Proyectos y sus métricas
 - Tecnologías utilizadas
@@ -93,4 +94,3 @@ Los colores se definen como variables CSS en `src/styles/global.css`:
 ## Licencia
 
 MIT
-
