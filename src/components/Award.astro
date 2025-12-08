@@ -1,0 +1,523 @@
+---
+import awardData from "../data/award.json";
+
+const { title, organization, project, year, description, images } = awardData;
+const baseUrl = import.meta.env.BASE_URL;
+
+// Prepend base URL to image paths
+const imagesWithBase = images.map((image) => ({
+  ...image,
+  src: `${baseUrl}${image.src.replace(/^\//, "")}`,
+}));
+---
+
+<section class="award-section" id="award">
+  <div class="award-bg">
+    <div class="gradient-blob orange blob-award-1"></div>
+    <div class="gradient-blob magenta blob-award-2"></div>
+  </div>
+
+  <div class="container">
+    <div class="award-header">
+      <span class="section-label fade-in">RECONOCIMIENTO</span>
+      <h2 class="award-title fade-in stagger-1">
+        Premio a la <span class="text-gradient-orange">Innovación</span>
+      </h2>
+      <p class="award-subtitle fade-in stagger-2">
+        {description}
+      </p>
+    </div>
+  </div>
+
+  <div class="award-content-wrapper">
+    <div class="award-content">
+      <div class="award-visual fade-in stagger-3">
+        <div class="bento-grid">
+          <!-- Card grande con información del premio y gradiente -->
+          <div class="bento-card bento-text-card" data-index="0">
+            <div class="text-card-content">
+              <div class="text-card-gradient"></div>
+              <div class="text-card-info">
+                <span class="text-card-label">Premio</span>
+                <h3 class="text-card-title">{title}</h3>
+                <div class="text-card-details">
+                  <div class="detail-item">
+                    <span class="detail-label">Organización</span>
+                    <span class="detail-value">{organization}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Proyecto</span>
+                    <span class="detail-value">{project}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Año</span>
+                    <span class="detail-value">{year}</span>
+                  </div>
+                </div>
+                <p class="text-card-description">{description}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cards con imágenes del evento -->
+          {
+            imagesWithBase.map((image, index) => (
+              <div class="bento-card bento-image-card" data-index={index + 1}>
+                <div class="card-image-wrapper">
+                  {image.src.endsWith(".mp4") ? (
+                    <video
+                      src={image.src}
+                      autoplay
+                      loop
+                      playsinline
+                      muted
+                      controls={false}
+                      class="bento-video"
+                    />
+                  ) : (
+                    <img
+                      src={image.src}
+                      alt={`${title} - Imagen del evento ${index + 1}`}
+                      loading="lazy"
+                      onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22500%22%3E%3Crect fill=%22%23121212%22 width=%22400%22 height=%22500%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23ffffff%22 font-size=%2220%22%3EImagen del Evento%3C/text%3E%3C/svg%3E'"
+                    />
+                  )}
+                  <div class="card-overlay" />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .award-section {
+    min-height: 100vh;
+    position: relative;
+    background: var(--color-bg-dark);
+    overflow: hidden;
+    padding: var(--section-padding) 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .award-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .blob-award-1 {
+    width: 500px;
+    height: 500px;
+    top: 10%;
+    left: -150px;
+    opacity: 0.25;
+    animation: float 25s ease-in-out infinite;
+  }
+
+  .blob-award-2 {
+    width: 400px;
+    height: 400px;
+    bottom: 10%;
+    right: -100px;
+    opacity: 0.2;
+    animation: float 30s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(30px, -30px);
+    }
+  }
+
+  .award-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-orange);
+    margin-bottom: 1rem;
+  }
+
+  .award-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .award-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .award-content-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .award-content {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 clamp(2rem, 5vw, 6rem);
+  }
+
+  .award-visual {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, minmax(300px, auto));
+    gap: 1.5rem;
+    width: 100%;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+  }
+
+  .bento-text-card {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .bento-image-card {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .text-card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .text-card-gradient {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-orange);
+    opacity: 0.15;
+    z-index: 0;
+  }
+
+  .text-card-info {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .text-card-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-orange);
+    align-self: flex-start;
+  }
+
+  .text-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .text-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .detail-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .text-card-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .bento-card {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--color-bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s var(--ease-out-expo);
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    will-change: transform, opacity;
+  }
+
+  .bento-text-card {
+    cursor: default;
+  }
+
+  .bento-image-card {
+    cursor: pointer;
+  }
+
+  .bento-image-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(255, 158, 0, 0.4);
+    border-color: rgba(255, 158, 0, 0.3);
+    z-index: 10;
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .bento-card img,
+  .bento-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+
+  .bento-card:hover img,
+  .bento-card:hover video {
+    transform: scale(1.1);
+  }
+
+  .bento-video {
+    cursor: pointer;
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out-expo);
+    pointer-events: none;
+  }
+
+  .bento-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  @media (max-width: 968px) {
+    .bento-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, minmax(250px, auto));
+      gap: 1rem;
+    }
+
+    .bento-text-card {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .bento-image-card {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .text-card-content {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .bento-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, minmax(300px, auto));
+      gap: 1rem;
+    }
+
+    .bento-text-card {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .bento-image-card {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .text-card-content {
+      padding: 1.5rem;
+    }
+
+    .text-card-info {
+      gap: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bento-card {
+      transition: opacity 0.3s ease;
+      transform: none;
+    }
+
+    .bento-card:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap, ScrollTrigger } from "../scripts/gsap-init";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const bentoCards = document.querySelectorAll(".bento-card");
+    const header = document.querySelector(".award-header");
+    const visual = document.querySelector(".award-visual");
+
+    // Animate header
+    if (header) {
+      gsap.fromTo(
+        header,
+        {
+          opacity: 0,
+          y: 40,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: header,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Animate visual
+    if (visual) {
+      gsap.fromTo(
+        visual,
+        {
+          opacity: 0,
+          x: 40,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: visual,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+
+    // Animate bento cards with stagger
+    if (bentoCards.length > 0) {
+      bentoCards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 50,
+            scale: 0.9,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+            delay: index * 0.1,
+          }
+        );
+      });
+    }
+
+    // Video audio control on hover
+    const imageCards = document.querySelectorAll(".bento-image-card");
+    imageCards.forEach((card) => {
+      const video = card.querySelector("video");
+      if (video) {
+        // Mute by default
+        video.muted = true;
+
+        // Unmute on hover
+        card.addEventListener("mouseenter", () => {
+          video.muted = false;
+        });
+
+        // Mute on mouse leave
+        card.addEventListener("mouseleave", () => {
+          video.muted = true;
+        });
+      }
+    });
+  });
+</script>
