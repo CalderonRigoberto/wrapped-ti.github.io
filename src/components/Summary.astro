@@ -1,5 +1,5 @@
 ---
-import data from '../data/projects.json';
+import data from "../data/projects.json";
 
 const { summary } = data;
 ---
@@ -8,7 +8,7 @@ const { summary } = data;
   <div class="summary-bg">
     <div class="gradient-blob cyan blob-summary"></div>
   </div>
-  
+
   <div class="container">
     <div class="summary-header">
       <span class="section-label fade-in">RESUMEN DEL AÑO</span>
@@ -19,41 +19,55 @@ const { summary } = data;
         Estos son los números que definieron nuestro impacto en {data.year}
       </p>
     </div>
-    
+
     <div class="stats-grid">
       <div class="stat-card glass-card fade-in stagger-1">
         <div class="stat-icon">📊</div>
-        <div class="stat-value" data-target={summary.totalProjects}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.totalProjects}>0</div>
+        </div>
         <div class="stat-label">Proyectos Completados</div>
       </div>
-      
+
       <div class="stat-card glass-card fade-in stagger-2">
         <div class="stat-icon">⏱️</div>
-        <div class="stat-value" data-target={summary.hoursInvested}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.hoursInvested}>0</div>
+        </div>
         <div class="stat-label">Horas Invertidas</div>
       </div>
-      
+
       <div class="stat-card glass-card fade-in stagger-3">
         <div class="stat-icon">👥</div>
-        <div class="stat-value" data-target={summary.teamMembers}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.teamMembers}>0</div>
+        </div>
         <div class="stat-label">Miembros del Equipo</div>
       </div>
-      
+
       <div class="stat-card glass-card fade-in stagger-4">
         <div class="stat-icon">💻</div>
-        <div class="stat-value" data-target={summary.linesOfCode}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.linesOfCode}>0</div>
+        </div>
         <div class="stat-label">Líneas de Código</div>
       </div>
-      
+
       <div class="stat-card glass-card fade-in stagger-5">
         <div class="stat-icon">🚀</div>
-        <div class="stat-value" data-target={summary.deploymentsCount}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.deploymentsCount}>0</div>
+        </div>
         <div class="stat-label">Despliegues</div>
       </div>
-      
+
       <div class="stat-card glass-card fade-in stagger-5">
         <div class="stat-icon">✅</div>
-        <div class="stat-value stat-percentage" data-target={summary.uptime}>0</div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value stat-percentage" data-target={summary.uptime}>
+            0
+          </div>
+        </div>
         <div class="stat-label">Uptime</div>
       </div>
     </div>
@@ -70,13 +84,13 @@ const { summary } = data;
     overflow: hidden;
     padding: var(--section-padding) 0;
   }
-  
+
   .summary-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
   }
-  
+
   .blob-summary {
     width: 500px;
     height: 500px;
@@ -85,14 +99,14 @@ const { summary } = data;
     transform: translateY(-50%);
     opacity: 0.3;
   }
-  
+
   .summary-header {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
     z-index: 1;
   }
-  
+
   .section-label {
     display: inline-block;
     font-family: var(--font-display);
@@ -102,19 +116,19 @@ const { summary } = data;
     color: var(--color-cyan);
     margin-bottom: 1rem;
   }
-  
+
   .summary-title {
     font-size: clamp(2rem, 5vw, 4rem);
     margin-bottom: 1rem;
   }
-  
+
   .summary-subtitle {
     font-size: 1.125rem;
     color: var(--color-text-secondary);
     max-width: 500px;
     margin: 0 auto;
   }
-  
+
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -122,116 +136,169 @@ const { summary } = data;
     position: relative;
     z-index: 1;
   }
-  
+
   .stat-card {
     text-align: center;
     padding: 2.5rem 2rem;
-    transition: transform 0.3s var(--ease-out-expo), 
-                box-shadow 0.3s var(--ease-out-expo);
+    transition:
+      transform 0.3s var(--ease-out-expo),
+      box-shadow 0.3s var(--ease-out-expo);
+    overflow: hidden;
   }
-  
+
   .stat-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 245, 212, 0.1);
   }
-  
+
   .stat-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
-  
+
+  .stat-value-wrapper {
+    width: 100%;
+    height: 4.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
   .stat-value {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     font-weight: 700;
     background: var(--gradient-cyan);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    will-change: contents;
+    transition: font-size 0.1s ease;
   }
-  
+
+  /* Ajustar tamaño de fuente para números muy grandes */
+  .stat-value[data-target="287500"],
+  .stat-value[data-target="15840"] {
+    font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  }
+
   .stat-percentage::after {
-    content: '%';
+    content: "%";
     -webkit-text-fill-color: inherit;
   }
-  
+
   .stat-label {
     font-size: 1rem;
     color: var(--color-text-secondary);
     font-weight: 500;
   }
-  
+
   @media (max-width: 768px) {
     .stats-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
-    
+
     .stat-card {
       padding: 1.5rem 1rem;
     }
-    
+
     .stat-icon {
       font-size: 2rem;
     }
+
+    .stat-value {
+      font-size: clamp(1.25rem, 3.5vw, 2rem);
+    }
+
+    .stat-value-wrapper {
+      height: 3.5rem;
+    }
   }
-  
+
   @media (max-width: 480px) {
     .stats-grid {
       grid-template-columns: 1fr;
+    }
+
+    .stat-value {
+      font-size: clamp(1.1rem, 4vw, 1.75rem);
+    }
+
+    .stat-value-wrapper {
+      height: 3rem;
     }
   }
 </style>
 
 <script>
-  import { gsap, ScrollTrigger } from '../scripts/gsap-init';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const statValues = document.querySelectorAll('.stat-value');
-    
+  import { gsap, ScrollTrigger } from "../scripts/gsap-init";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const statValues = document.querySelectorAll(".stat-value");
+
     statValues.forEach((el) => {
-      const target = parseInt(el.getAttribute('data-target') || '0');
-      const isPercentage = el.classList.contains('stat-percentage');
-      
+      const target = parseInt(el.getAttribute("data-target") || "0");
+      const isPercentage = el.classList.contains("stat-percentage");
+
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 80%',
+        start: "top 80%",
         onEnter: () => {
           const duration = target > 1000 ? 2500 : 2000;
           animateValue(el as HTMLElement, target, duration, isPercentage);
         },
-        once: true
+        once: true,
       });
     });
   });
-  
-  function animateValue(element: HTMLElement, target: number, duration: number, isPercentage: boolean) {
+
+  function animateValue(
+    element: HTMLElement,
+    target: number,
+    duration: number,
+    isPercentage: boolean
+  ) {
     const startTime = performance.now();
-    
+    const wrapper = element.closest(".stat-value-wrapper") as HTMLElement;
+
+    // Ajustar tamaño de fuente si el número es muy grande
+    if (target > 10000) {
+      element.style.fontSize = "clamp(1.2rem, 2.8vw, 1.8rem)";
+    }
+
     const updateValue = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       // Ease out expo
       const easeProgress = 1 - Math.pow(2, -10 * progress);
-      const current = isPercentage 
+      const current = isPercentage
         ? (target * easeProgress).toFixed(2)
-        : Math.floor(target * easeProgress).toLocaleString('es-ES');
-      
+        : Math.floor(target * easeProgress).toLocaleString("es-ES");
+
       element.textContent = current.toString();
-      
+
       if (progress < 1) {
         requestAnimationFrame(updateValue);
       } else {
-        element.textContent = isPercentage 
-          ? target.toFixed(2) 
-          : target.toLocaleString('es-ES');
+        element.textContent = isPercentage
+          ? target.toFixed(2)
+          : target.toLocaleString("es-ES");
       }
     };
-    
+
     requestAnimationFrame(updateValue);
   }
 </script>
-
