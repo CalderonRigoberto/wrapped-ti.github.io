@@ -23,12 +23,20 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s var(--ease-out-expo);
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      background 0.3s var(--ease-out-expo),
+      box-shadow 0.3s var(--ease-out-expo);
+    transform: translateY(0);
   }
 
   .site-header.scrolled {
     background: rgba(10, 10, 10, 0.9);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .site-header.hidden {
+    transform: translateY(-100%);
   }
 
   .header-container {
@@ -79,21 +87,46 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     const header = document.getElementById("site-header");
 
     if (header) {
-      let lastScroll = 0;
+      let lastScroll = window.scrollY;
+      let ticking = false;
 
       const handleScroll = () => {
         const currentScroll = window.scrollY;
 
+        // Add scrolled class for styling
         if (currentScroll > 50) {
           header.classList.add("scrolled");
         } else {
           header.classList.remove("scrolled");
         }
 
+        // Hide/show header based on scroll direction
+        if (currentScroll > 100) {
+          // Only hide/show after passing hero section
+          if (currentScroll > lastScroll) {
+            // Scrolling down - hide header
+            header.classList.add("hidden");
+          } else {
+            // Scrolling up - show header
+            header.classList.remove("hidden");
+          }
+        } else {
+          // Always show in hero section
+          header.classList.remove("hidden");
+        }
+
         lastScroll = currentScroll;
+        ticking = false;
       };
 
-      window.addEventListener("scroll", handleScroll, { passive: true });
+      const onScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleScroll);
+          ticking = true;
+        }
+      };
+
+      window.addEventListener("scroll", onScroll, { passive: true });
       handleScroll(); // Check initial state
     }
   });
