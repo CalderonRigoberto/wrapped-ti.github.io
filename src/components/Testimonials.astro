@@ -46,7 +46,7 @@ const duplicatedTestimonials = [
   ...enrichedTestimonials,
 ];
 
-const averageRating = 4.8;
+const averageRating = 4.5;
 const totalTickets = 1419;
 ---
 
@@ -69,31 +69,29 @@ const totalTickets = 1419;
       <div class="testimonials-metrics fade-in stagger-3">
         <div class="rating-highlight">
           <div class="rating-stars">
-            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              ></path>
-            </svg>
-            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              ></path>
-            </svg>
-            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              ></path>
-            </svg>
-            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              ></path>
-            </svg>
-            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-              ></path>
-            </svg>
+            {
+              [1, 2, 3, 4, 5].map((star) => {
+                const fillPercentage = Math.min(
+                  Math.max((averageRating - star + 1) * 100, 0),
+                  100
+                );
+                return (
+                  <div class="star-wrapper">
+                    <svg class="star-icon star-empty" viewBox="0 0 24 24">
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                    </svg>
+                    <div
+                      class="star-fill-container"
+                      style={`width: ${fillPercentage}%`}
+                    >
+                      <svg class="star-icon star-filled" viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
+                    </div>
+                  </div>
+                );
+              })
+            }
           </div>
           <div class="rating-number shimmer-3d">{averageRating}</div>
           <span class="rating-label">Calificación promedio</span>
@@ -214,39 +212,61 @@ const totalTickets = 1419;
     gap: 0.5rem;
   }
 
-  .star-icon {
+  .star-wrapper {
+    position: relative;
     width: 32px;
     height: 32px;
-    color: #fbbf24;
-    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
     animation: star-pulse 2s ease-in-out infinite;
   }
 
-  .star-icon:nth-child(1) {
+  .star-wrapper:nth-child(1) {
     animation-delay: 0s;
   }
-  .star-icon:nth-child(2) {
+  .star-wrapper:nth-child(2) {
     animation-delay: 0.1s;
   }
-  .star-icon:nth-child(3) {
+  .star-wrapper:nth-child(3) {
     animation-delay: 0.2s;
   }
-  .star-icon:nth-child(4) {
+  .star-wrapper:nth-child(4) {
     animation-delay: 0.3s;
   }
-  .star-icon:nth-child(5) {
+  .star-wrapper:nth-child(5) {
     animation-delay: 0.4s;
+  }
+
+  .star-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .star-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: rgba(255, 255, 255, 0.2);
+  }
+
+  .star-fill-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .star-filled {
+    fill: #fbbf24;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
   }
 
   @keyframes star-pulse {
     0%,
     100% {
       transform: scale(1);
-      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
     }
     50% {
       transform: scale(1.1);
-      filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.8));
     }
   }
 
@@ -389,6 +409,11 @@ const totalTickets = 1419;
     .testimonials-metrics {
       gap: 0.75rem;
       margin-top: 2rem;
+    }
+
+    .star-wrapper {
+      width: 26px;
+      height: 26px;
     }
 
     .star-icon {
