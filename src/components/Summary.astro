@@ -200,6 +200,47 @@ const { summary } = data;
         <div class="stat-label">Satisfacción del Cliente</div>
       </div>
     </div>
+
+    <div class="budget-section fade-in">
+      <div class="budget-card glass-card">
+        <div class="budget-item">
+          <div class="budget-label">
+            <span>Presupuesto autorizado</span>
+            <span class="budget-value">$7,920,000.00</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-progress="100"></div>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-label">
+            <span>Presupuesto ejercido</span>
+            <span class="budget-value">$7,605,273.90</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" data-progress="96"></div>
+          </div>
+        </div>
+
+        <div class="budget-item">
+          <div class="budget-label">
+            <span>Presupuesto no ejercido</span>
+            <span class="budget-value">$314,726.10</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill small" data-progress="4"></div>
+          </div>
+        </div>
+
+        <div class="budget-percentage">
+          <span class="percentage-number">96%</span>
+          <span class="percentage-label"
+            >Porcentaje de presupuesto ejercido anualmente</span
+          >
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -464,6 +505,121 @@ const { summary } = data;
       min-height: 2.5rem;
     }
   }
+
+  /* Budget Section Styles */
+  .budget-section {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  .budget-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 2rem;
+    color: var(--color-text-primary);
+  }
+
+  .budget-card {
+    padding: 2.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 245, 212, 0.1) 0%,
+      rgba(0, 187, 249, 0.1) 100%
+    );
+    border: 1px solid rgba(0, 245, 212, 0.2);
+    text-align: left;
+  }
+
+  .budget-item {
+    margin-bottom: 1.75rem;
+  }
+
+  .budget-item:last-of-type {
+    margin-bottom: 2.5rem;
+  }
+
+  .budget-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .budget-label span:first-child {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  .budget-value {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+  }
+
+  .progress-bar {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 50px;
+    background: var(--gradient-cyan);
+    width: 0%;
+    transition: width 1.5s var(--ease-out-expo);
+  }
+
+  .progress-fill.small {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .budget-percentage {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .percentage-number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 700;
+    background: var(--gradient-cyan);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .percentage-label {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .budget-card {
+      padding: 1.5rem;
+    }
+
+    .budget-label {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .budget-value {
+      font-size: 0.875rem;
+    }
+  }
 </style>
 
 <script>
@@ -484,6 +640,27 @@ const { summary } = data;
         onEnter: () => {
           const duration = target > 1000 ? 2500 : 2000;
           animateValue(el as HTMLElement, target, duration, isPercentage);
+        },
+        once: true,
+      });
+    });
+
+    // Animate budget progress bars
+    const progressBars = document.querySelectorAll(".progress-fill");
+
+    progressBars.forEach((bar) => {
+      const progress = bar.getAttribute("data-progress") || "0";
+
+      ScrollTrigger.create({
+        trigger: bar,
+        start: "top 85%",
+        onEnter: () => {
+          gsap.to(bar, {
+            width: `${progress}%`,
+            duration: 1.5,
+            ease: "expo.out",
+            delay: 0.2,
+          });
         },
         once: true,
       });

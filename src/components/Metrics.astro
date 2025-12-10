@@ -1,5 +1,5 @@
 ---
-import data from '../data/projects.json';
+import data from "../data/projects.json";
 
 const { achievements } = data;
 ---
@@ -8,7 +8,7 @@ const { achievements } = data;
   <div class="metrics-bg">
     <div class="gradient-blob purple blob-metrics"></div>
   </div>
-  
+
   <div class="container">
     <div class="metrics-header">
       <span class="section-label fade-in">LOGROS DESTACADOS</span>
@@ -16,17 +16,21 @@ const { achievements } = data;
         Nuestros <span class="text-gradient-purple">mejores</span> momentos
       </h2>
     </div>
-    
+
     <div class="achievements-grid">
-      {achievements.map((achievement, index) => (
-        <div class={`achievement-card glass-card scale-in stagger-${index + 1}`}>
-          <span class="achievement-icon">{achievement.icon}</span>
-          <h3 class="achievement-title">{achievement.title}</h3>
-          <p class="achievement-value">{achievement.value}</p>
-        </div>
-      ))}
+      {
+        achievements.map((achievement, index) => (
+          <div
+            class={`achievement-card glass-card scale-in stagger-${index + 1}`}
+          >
+            <span class="achievement-icon">{achievement.icon}</span>
+            <h3 class="achievement-title">{achievement.title}</h3>
+            <p class="achievement-value">{achievement.value}</p>
+          </div>
+        ))
+      }
     </div>
-    
+
     <div class="impact-section fade-in">
       <div class="impact-card glass-card">
         <h3 class="impact-title">Impacto Total</h3>
@@ -61,13 +65,13 @@ const { achievements } = data;
     overflow: hidden;
     padding: var(--section-padding) 0;
   }
-  
+
   .metrics-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
   }
-  
+
   .blob-metrics {
     width: 600px;
     height: 600px;
@@ -77,9 +81,10 @@ const { achievements } = data;
     opacity: 0.2;
     animation: pulse-slow 20s ease-in-out infinite;
   }
-  
+
   @keyframes pulse-slow {
-    0%, 100% {
+    0%,
+    100% {
       transform: translate(-50%, -50%) scale(1);
       opacity: 0.2;
     }
@@ -88,14 +93,14 @@ const { achievements } = data;
       opacity: 0.3;
     }
   }
-  
+
   .metrics-header {
     text-align: center;
     margin-bottom: 4rem;
     position: relative;
     z-index: 1;
   }
-  
+
   .section-label {
     display: inline-block;
     font-family: var(--font-display);
@@ -105,11 +110,11 @@ const { achievements } = data;
     color: var(--color-purple);
     margin-bottom: 1rem;
   }
-  
+
   .metrics-title {
     font-size: clamp(2rem, 5vw, 4rem);
   }
-  
+
   .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -118,30 +123,30 @@ const { achievements } = data;
     position: relative;
     z-index: 1;
   }
-  
+
   .achievement-card {
     text-align: center;
     padding: 2.5rem 1.5rem;
     transition: transform 0.3s var(--ease-out-expo);
   }
-  
+
   .achievement-card:hover {
     transform: translateY(-8px) scale(1.02);
   }
-  
+
   .achievement-icon {
     font-size: 3rem;
     display: block;
     margin-bottom: 1rem;
   }
-  
+
   .achievement-title {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--color-text-primary);
     margin-bottom: 0.5rem;
   }
-  
+
   .achievement-value {
     font-family: var(--font-display);
     font-size: 1.25rem;
@@ -151,25 +156,29 @@ const { achievements } = data;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  
+
   .impact-section {
     position: relative;
     z-index: 1;
   }
-  
+
   .impact-card {
     padding: 3rem;
     text-align: center;
-    background: linear-gradient(135deg, rgba(131, 56, 236, 0.1) 0%, rgba(58, 134, 255, 0.1) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(131, 56, 236, 0.1) 0%,
+      rgba(58, 134, 255, 0.1) 100%
+    );
     border: 1px solid rgba(131, 56, 236, 0.2);
   }
-  
+
   .impact-title {
     font-size: 1.5rem;
     margin-bottom: 2.5rem;
     color: var(--color-text-primary);
   }
-  
+
   .impact-stats {
     display: flex;
     justify-content: center;
@@ -177,14 +186,14 @@ const { achievements } = data;
     gap: 3rem;
     flex-wrap: wrap;
   }
-  
+
   .impact-stat {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
   }
-  
+
   .impact-number {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4rem);
@@ -195,34 +204,44 @@ const { achievements } = data;
     background-clip: text;
     line-height: 1.2;
   }
-  
+
   .impact-number.suffix-percent::after {
-    content: '%';
+    content: "%";
   }
-  
+
   .impact-label {
     font-size: 0.9375rem;
     color: var(--color-text-secondary);
   }
-  
+
   .impact-divider {
     width: 1px;
     height: 60px;
-    background: linear-gradient(180deg, transparent 0%, rgba(131, 56, 236, 0.5) 50%, transparent 100%);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(131, 56, 236, 0.5) 50%,
+      transparent 100%
+    );
   }
-  
+
   @media (max-width: 768px) {
     .impact-stats {
       flex-direction: column;
       gap: 2rem;
     }
-    
+
     .impact-divider {
       width: 100px;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(131, 56, 236, 0.5) 50%, transparent 100%);
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(131, 56, 236, 0.5) 50%,
+        transparent 100%
+      );
     }
-    
+
     .achievement-card {
       padding: 2rem 1rem;
     }
@@ -230,45 +249,45 @@ const { achievements } = data;
 </style>
 
 <script>
-  import { gsap, ScrollTrigger } from '../scripts/gsap-init';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const impactNumbers = document.querySelectorAll('.impact-number');
-    
+  import { ScrollTrigger } from "../scripts/gsap-init";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animate impact numbers
+    const impactNumbers = document.querySelectorAll(".impact-number");
+
     impactNumbers.forEach((el) => {
-      const target = parseInt(el.getAttribute('data-value') || '0');
-      
+      const target = parseInt(el.getAttribute("data-value") || "0");
+
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 80%',
+        start: "top 80%",
         onEnter: () => {
           animateNumber(el as HTMLElement, target);
         },
-        once: true
+        once: true,
       });
     });
   });
-  
+
   function animateNumber(element: HTMLElement, target: number) {
     const duration = 2000;
     const startTime = performance.now();
-    
+
     const update = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const easeProgress = 1 - Math.pow(2, -10 * progress);
       const current = Math.floor(target * easeProgress);
-      
-      element.textContent = current.toLocaleString('es-ES');
-      
+
+      element.textContent = current.toLocaleString("es-ES");
+
       if (progress < 1) {
         requestAnimationFrame(update);
       } else {
-        element.textContent = target.toLocaleString('es-ES');
+        element.textContent = target.toLocaleString("es-ES");
       }
     };
-    
+
     requestAnimationFrame(update);
   }
 </script>
-
