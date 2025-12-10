@@ -8,6 +8,7 @@ type Testimonial = {
   type: "video" | "text";
   projectId?: number;
   videoUrl?: string;
+  rating?: number;
   comment: string;
   author: string;
   role: string;
@@ -18,20 +19,22 @@ const testimonials = testimonialsData.testimonials;
 
 // Enrich testimonials with project data if projectId exists
 const enrichedTestimonials: Testimonial[] = testimonials.map((testimonial) => {
+  const t = testimonial as Record<string, unknown>;
   const enriched: Testimonial = {
     id: testimonial.id,
     type: testimonial.type as "video" | "text",
-    projectId: testimonial.projectId,
-    videoUrl: testimonial.videoUrl,
+    projectId: t.projectId as number | undefined,
+    videoUrl: t.videoUrl as string | undefined,
+    rating: testimonial.rating,
     comment: testimonial.comment,
     author: testimonial.author,
     role: testimonial.role,
-    projectName: testimonial.projectName,
+    projectName: t.projectName as string | undefined,
   };
 
-  if (testimonial.projectId) {
-    const project = data.projects.find((p) => p.id === testimonial.projectId);
-    enriched.projectName = project?.name || testimonial.projectName;
+  if (t.projectId) {
+    const project = data.projects.find((p) => p.id === t.projectId);
+    enriched.projectName = project?.name || (t.projectName as string);
   }
 
   return enriched;
@@ -54,14 +57,10 @@ const duplicatedTestimonials = [
     <div class="testimonials-header">
       <span class="section-label fade-in">TESTIMONIOS</span>
       <h2 class="testimonials-title fade-in stagger-1">
-        Lo que dicen sobre nuestros <span class="text-gradient-purple"
-          >proyectos</span
-        >
+        Lo que dicen sobre <span class="text-gradient-purple">nosotros</span>
       </h2>
       <p class="testimonials-subtitle fade-in stagger-2">
-        Testimonios reales de quienes han trabajado con nuestras soluciones en {
-          data.year
-        }
+        Testimonios reales de quienes han trabajado con nosotros en {data.year}
       </p>
     </div>
   </div>
