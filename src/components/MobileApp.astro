@@ -27,30 +27,38 @@ const reviews = [
   </div>
 
   <div class="container mobile-app-content">
-    <!-- Izquierda: Teléfono con perspectiva 3D -->
+    <!-- Izquierda: Deck de teléfonos con perspectiva 3D -->
     <div class="phone-showcase">
-      <div class="phone-mockup">
-        <div class="phone-frame">
-          <!-- Notch -->
-          <div class="phone-notch"></div>
-          <!-- Screen container -->
-          <div class="phone-screen">
-            <img
-              src={`${baseUrl}images/app-1.png`}
-              alt="VISE Móvil - Pantalla de inicio"
-              class="screen-image screen-primary"
-              loading="lazy"
-            />
-            <img
-              src={`${baseUrl}images/app_2.png`}
-              alt="VISE Móvil - Pantalla secundaria"
-              class="screen-image screen-secondary"
-              loading="lazy"
-            />
+      <div class="phones-deck">
+        <!-- Teléfono 1 (principal) -->
+        <div class="phone-mockup phone-primary">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img
+                src={`${baseUrl}images/app-login-1.webp`}
+                alt="VISE Móvil - Pantalla de inicio"
+                class="screen-image"
+                loading="lazy"
+              />
+            </div>
           </div>
+          <div class="phone-shadow"></div>
         </div>
-        <!-- Sombra dinámica -->
-        <div class="phone-shadow"></div>
+
+        <!-- Teléfono 2 (secundario) -->
+        <div class="phone-mockup phone-secondary">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <img
+                src={`${baseUrl}images/app-main-2.webp`}
+                alt="VISE Móvil - Pantalla secundaria"
+                class="screen-image"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="phone-shadow"></div>
+        </div>
       </div>
     </div>
 
@@ -63,9 +71,7 @@ const reviews = [
       </h2>
 
       <p class="app-description fade-in stagger-2">
-        Todo lo que necesitas de VISE en la palma de tu mano. Consulta tu
-        información, registra asistencia y mantente conectado desde cualquier
-        lugar.
+        Todo lo que necesitas de VISE en la palma de tu mano.
       </p>
 
       <div class="app-features fade-in stagger-3">
@@ -117,51 +123,74 @@ const reviews = [
           </svg>
           <span>Notificaciones en tiempo real</span>
         </div>
+        <div class="feature-item">
+          <svg
+            class="feature-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <span>Mucho más...</span>
+        </div>
       </div>
 
       <div class="download-buttons fade-in stagger-4">
-        <a href="#" class="download-btn app-store">
-          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"
-            ></path>
+        <a
+          href="https://appmovil.vise.com.mx/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="download-btn unified"
+        >
+          <svg
+            class="store-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
           <div class="btn-text">
-            <span class="btn-label">Descargar en</span>
-            <span class="btn-store">App Store</span>
-          </div>
-        </a>
-        <a href="#" class="download-btn google-play">
-          <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"
-            ></path>
-          </svg>
-          <div class="btn-text">
-            <span class="btn-label">Disponible en</span>
-            <span class="btn-store">Google Play</span>
+            <span class="btn-label">Descarga la app</span>
+            <span class="btn-store">VISE Móvil</span>
           </div>
         </a>
       </div>
 
       <div class="app-reviews fade-in stagger-5">
         <h4 class="reviews-title">Lo que dicen los usuarios</h4>
-        <div class="reviews-container">
-          {
-            reviews.map((review, index) => (
-              <div class="review-card" style={`--delay: ${index * 0.1}s`}>
-                <div class="review-stars">
-                  {[...Array(review.rating)].map(() => (
-                    <svg class="star" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                    </svg>
-                  ))}
+        <div class="reviews-marquee">
+          <div class="reviews-track">
+            {
+              reviews.map((review, index) => (
+                <div
+                  class="review-card"
+                  style={`--index: ${index}; --total: ${reviews.length}`}
+                >
+                  <div class="review-stars">
+                    {[...Array(review.rating)].map(() => (
+                      <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p class="review-comment">"{review.comment}"</p>
+                  <span class="review-author">- {review.author}</span>
                 </div>
-                <p class="review-comment">"{review.comment}"</p>
-                <span class="review-author">- {review.author}</span>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
@@ -225,31 +254,52 @@ const reviews = [
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1200px;
     padding: 2rem;
+    min-height: 650px;
+  }
+
+  .phones-deck {
+    position: relative;
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
   .phone-mockup {
-    position: relative;
+    position: absolute;
     transform-style: preserve-3d;
-    transform: rotateX(25deg) rotateY(-15deg) rotateZ(5deg);
-    transition: transform 0.8s var(--ease-out-expo);
+    will-change: transform, opacity;
   }
 
-  .phone-mockup.normalized {
-    transform: rotateX(0) rotateY(0) rotateZ(0);
+  /* Teléfono principal - inicia casi acostado (ángulo pronunciado) */
+  .phone-primary {
+    z-index: 2;
+    transform: rotateX(65deg) rotateY(-10deg) rotateZ(0deg) scale(0.7);
+    transform-origin: center bottom;
+  }
+
+  /* Teléfono secundario - inicia oculto detrás */
+  .phone-secondary {
+    z-index: 1;
+    opacity: 0;
+    transform: rotateX(65deg) rotateY(-10deg) rotateZ(0deg) scale(0.65);
+    transform-origin: center bottom;
   }
 
   .phone-frame {
     position: relative;
-    width: 280px;
-    height: 580px;
+    width: 260px;
+    height: 540px;
     background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
     border-radius: 44px;
     padding: 12px;
     box-shadow:
       inset 0 0 0 2px rgba(255, 255, 255, 0.1),
-      0 0 0 1px rgba(0, 0, 0, 0.5);
+      0 0 0 1px rgba(0, 0, 0, 0.5),
+      0 25px 50px -12px rgba(0, 0, 0, 0.5);
     overflow: hidden;
   }
 
@@ -258,17 +308,17 @@ const reviews = [
     top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 28px;
+    width: 100px;
+    height: 24px;
     background: #0a0a0a;
-    border-radius: 0 0 16px 16px;
+    border-radius: 0 0 14px 14px;
     z-index: 10;
   }
 
   .phone-notch::before {
     content: "";
     position: absolute;
-    top: 8px;
+    top: 7px;
     left: 50%;
     transform: translateX(-50%);
     width: 8px;
@@ -283,7 +333,7 @@ const reviews = [
     width: 100%;
     height: 100%;
     background: #000;
-    border-radius: 36px;
+    border-radius: 34px;
     overflow: hidden;
   }
 
@@ -297,44 +347,21 @@ const reviews = [
     object-position: top;
   }
 
-  .screen-primary {
-    z-index: 1;
-  }
-
-  .screen-secondary {
-    z-index: 2;
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-  }
-
-  .screen-secondary.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
   .phone-shadow {
     position: absolute;
-    bottom: -60px;
+    bottom: -50px;
     left: 50%;
-    transform: translateX(-50%) rotateX(80deg);
-    width: 200px;
-    height: 100px;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 80px;
     background: radial-gradient(
       ellipse,
       rgba(0, 0, 0, 0.4) 0%,
       transparent 70%
     );
-    filter: blur(20px);
-    transition: all 0.8s var(--ease-out-expo);
-  }
-
-  .phone-mockup.normalized .phone-shadow {
-    width: 250px;
-    bottom: -40px;
-    opacity: 0.6;
+    filter: blur(15px);
+    opacity: 0.8;
+    transition: all 0.6s var(--ease-out-expo);
   }
 
   /* ===== APP INFO ===== */
@@ -388,10 +415,9 @@ const reviews = [
     flex-shrink: 0;
   }
 
-  /* ===== DOWNLOAD BUTTONS ===== */
+  /* ===== DOWNLOAD BUTTON ===== */
   .download-buttons {
     display: flex;
-    gap: 1rem;
     margin-top: 1rem;
   }
 
@@ -440,9 +466,10 @@ const reviews = [
     font-weight: 600;
   }
 
-  /* ===== REVIEWS ===== */
+  /* ===== REVIEWS MARQUEE ===== */
   .app-reviews {
     margin-top: 1.5rem;
+    max-width: 350px;
   }
 
   .reviews-title {
@@ -453,27 +480,48 @@ const reviews = [
     margin-bottom: 1rem;
   }
 
-  .reviews-container {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+  .reviews-marquee {
+    position: relative;
+    overflow: visible;
+    min-height: 160px;
+  }
+
+  .reviews-track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 
   .review-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     padding: 1rem;
     opacity: 0;
-    transform: translateX(20px);
-    animation: slideInReview 0.5s ease forwards;
-    animation-delay: var(--delay);
+    transform: translateY(20px);
+    animation: cycleReview 9s ease-in-out infinite;
+    animation-delay: calc(var(--index) * 3s);
   }
 
-  @keyframes slideInReview {
-    to {
+  @keyframes cycleReview {
+    0%,
+    5% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    10%,
+    28% {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
+    }
+    33%,
+    100% {
+      opacity: 0;
+      transform: translateY(-20px);
     }
   }
 
@@ -494,6 +542,7 @@ const reviews = [
     color: var(--color-text-secondary);
     font-style: italic;
     margin-bottom: 0.5rem;
+    line-height: 1.4;
   }
 
   .review-author {
@@ -511,6 +560,11 @@ const reviews = [
 
     .phone-showcase {
       order: -1;
+      min-height: 550px;
+    }
+
+    .phones-deck {
+      transform: scale(0.9);
     }
 
     .app-info {
@@ -526,13 +580,26 @@ const reviews = [
       flex-wrap: wrap;
     }
 
-    .reviews-container {
-      max-width: 400px;
+    .app-reviews {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .reviews-marquee {
+      max-width: 350px;
       margin: 0 auto;
     }
   }
 
   @media (max-width: 480px) {
+    .phone-showcase {
+      min-height: 480px;
+    }
+
+    .phones-deck {
+      transform: scale(0.75);
+    }
+
     .phone-frame {
       width: 240px;
       height: 500px;
@@ -540,8 +607,8 @@ const reviews = [
     }
 
     .phone-notch {
-      width: 100px;
-      height: 24px;
+      width: 90px;
+      height: 22px;
     }
 
     .phone-screen {
@@ -564,44 +631,97 @@ const reviews = [
   import { gsap, ScrollTrigger } from "../scripts/gsap-init";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const phoneMockup = document.querySelector(".phone-mockup");
-    const screenSecondary = document.querySelector(".screen-secondary");
+    const phonePrimary = document.querySelector(".phone-primary");
+    const phoneSecondary = document.querySelector(".phone-secondary");
     const section = document.querySelector(".mobile-app-section");
 
-    if (phoneMockup && section) {
-      // Animación del teléfono: de perspectiva inclinada a vista normal
-      gsap.to(phoneMockup, {
-        rotateX: 0,
-        rotateY: 0,
-        rotateZ: 0,
+    if (phonePrimary && phoneSecondary && section) {
+      // Timeline principal - animación más rápida
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
-          end: "center center",
-          scrub: 1,
-          onUpdate: (self) => {
-            if (self.progress > 0.5) {
-              phoneMockup.classList.add("normalized");
-            } else {
-              phoneMockup.classList.remove("normalized");
-            }
-          },
+          start: "top 95%",
+          end: "top 20%",
+          scrub: 0.8,
         },
       });
 
-      // Segunda captura aparece después de que el teléfono se normaliza
-      if (screenSecondary) {
-        ScrollTrigger.create({
-          trigger: section,
-          start: "center 60%",
-          onEnter: () => {
-            screenSecondary.classList.add("visible");
-          },
-          onLeaveBack: () => {
-            screenSecondary.classList.remove("visible");
-          },
-        });
-      }
+      // Fase 1 (0-50%): Levantar y agrandar el primer teléfono (de acostado a vertical)
+      tl.to(
+        phonePrimary,
+        {
+          rotateX: 0,
+          rotateY: 0,
+          rotateZ: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out",
+        },
+        0
+      );
+
+      // Fase 2 (40-70%): Aparecer segundo teléfono y levantarlo también
+      tl.to(
+        phoneSecondary,
+        {
+          opacity: 1,
+          scale: 1,
+          rotateX: 0,
+          rotateY: 0,
+          rotateZ: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        0.4
+      );
+
+      // Fase 3 (60-100%): Separar como deck de cartas en direcciones opuestas
+      tl.to(
+        phonePrimary,
+        {
+          x: -100,
+          rotateY: 12,
+          rotateZ: -3,
+          duration: 0.8,
+          ease: "power2.inOut",
+        },
+        0.6
+      );
+
+      tl.to(
+        phoneSecondary,
+        {
+          x: 100,
+          rotateY: -12,
+          rotateZ: 3,
+          duration: 0.8,
+          ease: "power2.inOut",
+        },
+        0.6
+      );
+
+      // Ajustar sombras durante la animación
+      tl.to(
+        ".phone-primary .phone-shadow",
+        {
+          x: -20,
+          opacity: 0.7,
+          scale: 1.1,
+          duration: 0.8,
+        },
+        0.6
+      );
+
+      tl.to(
+        ".phone-secondary .phone-shadow",
+        {
+          x: 20,
+          opacity: 0.7,
+          scale: 1.1,
+          duration: 0.8,
+        },
+        0.6
+      );
     }
 
     // Animación de entrada para los elementos de info
