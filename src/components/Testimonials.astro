@@ -45,6 +45,21 @@ const duplicatedTestimonials = [
   ...enrichedTestimonials,
   ...enrichedTestimonials,
 ];
+
+// Calculate average rating
+const ratingsWithValue = enrichedTestimonials.filter(
+  (t) => t.rating !== undefined
+);
+const averageRating =
+  ratingsWithValue.length > 0
+    ? (
+        ratingsWithValue.reduce((sum, t) => sum + (t.rating || 0), 0) /
+        ratingsWithValue.length
+      ).toFixed(1)
+    : "5.0";
+
+// Total tickets attended (this would come from your data, using a placeholder)
+const totalTickets = 1247;
 ---
 
 <section class="testimonials-section" id="testimonials">
@@ -62,6 +77,29 @@ const duplicatedTestimonials = [
       <p class="testimonials-subtitle fade-in stagger-2">
         Testimonios reales de quienes han trabajado con nosotros en {data.year}
       </p>
+
+      <div class="testimonials-metrics fade-in stagger-3">
+        <div class="metric-item">
+          <div class="metric-value">
+            <svg class="metric-star" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
+            <span>{averageRating}</span>
+          </div>
+          <span class="metric-label">Calificación promedio</span>
+        </div>
+        <div class="metric-divider"></div>
+        <div class="metric-item">
+          <div class="metric-value">
+            <span class="tickets-count"
+              >{totalTickets.toLocaleString("es-MX")}</span
+            >
+          </div>
+          <span class="metric-label">Tickets atendidos</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -151,6 +189,66 @@ const duplicatedTestimonials = [
     margin-bottom: 1rem;
   }
 
+  .testimonials-metrics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 1.25rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .metric-value {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .metric-star {
+    width: 28px;
+    height: 28px;
+    color: #fbbf24;
+    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
+  }
+
+  .tickets-count {
+    background: var(--gradient-purple);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .metric-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .metric-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .testimonials-subtitle {
     font-size: 1.125rem;
     color: var(--color-text-secondary);
@@ -221,6 +319,28 @@ const duplicatedTestimonials = [
   }
 
   @media (max-width: 768px) {
+    .testimonials-metrics {
+      gap: 1.5rem;
+      padding: 1rem 1.5rem;
+    }
+
+    .metric-value {
+      font-size: 1.5rem;
+    }
+
+    .metric-star {
+      width: 24px;
+      height: 24px;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+    }
+
+    .metric-divider {
+      height: 40px;
+    }
+
     .testimonials-marquee-wrapper {
       padding: 4rem 0 1.5rem 0;
     }
