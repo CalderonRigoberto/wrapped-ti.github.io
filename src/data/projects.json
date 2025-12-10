@@ -3,11 +3,12 @@
   "department": "Tecnologías de la Información",
   "summary": {
     "totalProjects": 12,
-    "hoursInvested": 15840,
-    "teamMembers": 8,
-    "linesOfCode": 287500,
-    "deploymentsCount": 156,
-    "uptime": 99.97
+    "hoursInvested": 22880,
+    "teamMembers": 11,
+    "deploymentsCount": 895,
+    "uptime": 98.22,
+    "clientSatisfaction": 92.83,
+    "availability": 99.98
   },
   "projects": [
     {

@@ -5,6 +5,36 @@ const { summary } = data;
 ---
 
 <section class="summary" id="summary">
+  <!-- SVG Gradient Definitions -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <linearGradient id="gradient-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00f5d4"></stop>
+        <stop offset="100%" style="stop-color:#00bbf9"></stop>
+      </linearGradient>
+      <linearGradient id="gradient-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#9b5de5"></stop>
+        <stop offset="100%" style="stop-color:#f15bb5"></stop>
+      </linearGradient>
+      <linearGradient id="gradient-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#fee440"></stop>
+        <stop offset="100%" style="stop-color:#f77f00"></stop>
+      </linearGradient>
+      <linearGradient id="gradient-green" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00f5d4"></stop>
+        <stop offset="100%" style="stop-color:#7bf1a8"></stop>
+      </linearGradient>
+      <linearGradient id="gradient-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#f15bb5"></stop>
+        <stop offset="100%" style="stop-color:#ff6b6b"></stop>
+      </linearGradient>
+      <linearGradient id="gradient-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#00bbf9"></stop>
+        <stop offset="100%" style="stop-color:#9b5de5"></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+
   <div class="summary-bg">
     <div class="gradient-blob cyan blob-summary"></div>
   </div>
@@ -21,54 +51,153 @@ const { summary } = data;
     </div>
 
     <div class="stats-grid">
-      <div class="stat-card glass-card fade-in stagger-1">
-        <div class="stat-icon">📊</div>
-        <div class="stat-value-wrapper">
-          <div class="stat-value" data-target={summary.totalProjects}>0</div>
+      <div class="stat-card glass-card fade-in stagger-1 card-cyan">
+        <div class="stat-icon icon-cyan">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-cyan)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+            ></path>
+            <path
+              d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"
+            ></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+          </svg>
         </div>
-        <div class="stat-label">Proyectos Completados</div>
-      </div>
-
-      <div class="stat-card glass-card fade-in stagger-2">
-        <div class="stat-icon">⏱️</div>
-        <div class="stat-value-wrapper">
-          <div class="stat-value" data-target={summary.hoursInvested}>0</div>
-        </div>
-        <div class="stat-label">Horas Invertidas</div>
-      </div>
-
-      <div class="stat-card glass-card fade-in stagger-3">
-        <div class="stat-icon">👥</div>
-        <div class="stat-value-wrapper">
-          <div class="stat-value" data-target={summary.teamMembers}>0</div>
-        </div>
-        <div class="stat-label">Miembros del Equipo</div>
-      </div>
-
-      <div class="stat-card glass-card fade-in stagger-4">
-        <div class="stat-icon">💻</div>
-        <div class="stat-value-wrapper">
-          <div class="stat-value" data-target={summary.linesOfCode}>0</div>
-        </div>
-        <div class="stat-label">Líneas de Código</div>
-      </div>
-
-      <div class="stat-card glass-card fade-in stagger-5">
-        <div class="stat-icon">🚀</div>
         <div class="stat-value-wrapper">
           <div class="stat-value" data-target={summary.deploymentsCount}>0</div>
         </div>
         <div class="stat-label">Despliegues</div>
       </div>
 
-      <div class="stat-card glass-card fade-in stagger-5">
-        <div class="stat-icon">✅</div>
+      <div class="stat-card glass-card fade-in stagger-2 card-purple">
+        <div class="stat-icon icon-purple">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-purple)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
         <div class="stat-value-wrapper">
-          <div class="stat-value stat-percentage" data-target={summary.uptime}>
+          <div class="stat-value" data-target={summary.hoursInvested}>0</div>
+        </div>
+        <div class="stat-label">Horas Invertidas</div>
+      </div>
+
+      <div class="stat-card glass-card fade-in stagger-3 card-orange">
+        <div class="stat-icon icon-orange">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-orange)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+        </div>
+        <div class="stat-value-wrapper">
+          <div class="stat-value" data-target={summary.teamMembers}>0</div>
+        </div>
+        <div class="stat-label">Miembros del Equipo</div>
+      </div>
+
+      <div class="stat-card glass-card fade-in stagger-4 card-green">
+        <div class="stat-icon icon-green">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-green)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+            <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+            <line x1="6" x2="6.01" y1="6" y2="6"></line>
+            <line x1="6" x2="6.01" y1="18" y2="18"></line>
+          </svg>
+        </div>
+        <div class="stat-value-wrapper">
+          <div
+            class="stat-value stat-percentage"
+            data-target={summary.availability.toFixed(2)}
+          >
             0
           </div>
         </div>
-        <div class="stat-label">Uptime</div>
+        <div class="stat-label">Disponibilidad de Infraestructura</div>
+      </div>
+
+      <div class="stat-card glass-card fade-in stagger-5 card-blue">
+        <div class="stat-icon icon-blue">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-blue)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" x2="22" y1="12" y2="12"></line>
+            <path
+              d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+            ></path>
+          </svg>
+        </div>
+        <div class="stat-value-wrapper">
+          <div
+            class="stat-value stat-percentage"
+            data-target={summary.uptime.toFixed(2)}
+          >
+            0
+          </div>
+        </div>
+        <div class="stat-label">VISE en Línea</div>
+      </div>
+
+      <div class="stat-card glass-card fade-in stagger-6 card-pink">
+        <div class="stat-icon icon-pink">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="url(#gradient-pink)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+            ></path>
+          </svg>
+        </div>
+        <div class="stat-value-wrapper">
+          <div
+            class="stat-value stat-percentage"
+            data-target={summary.clientSatisfaction.toFixed(2)}
+          >
+            0
+          </div>
+        </div>
+        <div class="stat-label">Satisfacción del Cliente</div>
       </div>
     </div>
   </div>
@@ -152,18 +281,74 @@ const { summary } = data;
   }
 
   .stat-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  .stat-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+
+  .stat-card:hover .stat-icon {
+    transform: scale(1.1);
+  }
+
+  /* Icon color variants with glow */
+  .icon-cyan svg {
+    filter: drop-shadow(0 0 10px rgba(0, 245, 212, 0.5));
+  }
+  .stat-card:hover .icon-cyan svg {
+    filter: drop-shadow(0 0 16px rgba(0, 245, 212, 0.7));
+  }
+
+  .icon-purple svg {
+    filter: drop-shadow(0 0 10px rgba(155, 93, 229, 0.5));
+  }
+  .stat-card:hover .icon-purple svg {
+    filter: drop-shadow(0 0 16px rgba(155, 93, 229, 0.7));
+  }
+
+  .icon-orange svg {
+    filter: drop-shadow(0 0 10px rgba(247, 127, 0, 0.5));
+  }
+  .stat-card:hover .icon-orange svg {
+    filter: drop-shadow(0 0 16px rgba(247, 127, 0, 0.7));
+  }
+
+  .icon-green svg {
+    filter: drop-shadow(0 0 10px rgba(123, 241, 168, 0.5));
+  }
+  .stat-card:hover .icon-green svg {
+    filter: drop-shadow(0 0 16px rgba(123, 241, 168, 0.7));
+  }
+
+  .icon-blue svg {
+    filter: drop-shadow(0 0 10px rgba(0, 187, 249, 0.5));
+  }
+  .stat-card:hover .icon-blue svg {
+    filter: drop-shadow(0 0 16px rgba(0, 187, 249, 0.7));
+  }
+
+  .icon-pink svg {
+    filter: drop-shadow(0 0 10px rgba(241, 91, 181, 0.5));
+  }
+  .stat-card:hover .icon-pink svg {
+    filter: drop-shadow(0 0 16px rgba(241, 91, 181, 0.7));
   }
 
   .stat-value-wrapper {
     width: 100%;
-    height: 4.5rem;
+    min-height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 0.5rem;
-    overflow: hidden;
     position: relative;
   }
 
@@ -171,20 +356,55 @@ const { summary } = data;
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3.5vw, 2.5rem);
     font-weight: 700;
-    background: var(--gradient-cyan);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.1;
+    line-height: 1.2;
     text-align: center;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     max-width: 100%;
     display: block;
     width: 100%;
     will-change: contents;
     transition: font-size 0.1s ease;
+  }
+
+  /* Stat value color variants matching icons */
+  .card-cyan .stat-value {
+    background: linear-gradient(135deg, #00f5d4, #00bbf9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-purple .stat-value {
+    background: linear-gradient(135deg, #9b5de5, #f15bb5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-orange .stat-value {
+    background: linear-gradient(135deg, #fee440, #f77f00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-green .stat-value {
+    background: linear-gradient(135deg, #00f5d4, #7bf1a8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-blue .stat-value {
+    background: linear-gradient(135deg, #00bbf9, #9b5de5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .card-pink .stat-value {
+    background: linear-gradient(135deg, #f15bb5, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   /* Ajustar tamaño de fuente para números muy grandes */
@@ -193,9 +413,8 @@ const { summary } = data;
     font-size: clamp(1.2rem, 2.8vw, 1.8rem);
   }
 
-  .stat-percentage::after {
-    content: "%";
-    -webkit-text-fill-color: inherit;
+  .stat-percentage {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
   }
 
   .stat-label {
@@ -215,7 +434,8 @@ const { summary } = data;
     }
 
     .stat-icon {
-      font-size: 2rem;
+      width: 40px;
+      height: 40px;
     }
 
     .stat-value {
@@ -223,7 +443,7 @@ const { summary } = data;
     }
 
     .stat-value-wrapper {
-      height: 3.5rem;
+      min-height: 3rem;
     }
   }
 
@@ -236,8 +456,12 @@ const { summary } = data;
       font-size: clamp(1.1rem, 4vw, 1.75rem);
     }
 
+    .stat-percentage {
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    }
+
     .stat-value-wrapper {
-      height: 3rem;
+      min-height: 2.5rem;
     }
   }
 </style>
@@ -249,8 +473,10 @@ const { summary } = data;
     const statValues = document.querySelectorAll(".stat-value");
 
     statValues.forEach((el) => {
-      const target = parseInt(el.getAttribute("data-target") || "0");
       const isPercentage = el.classList.contains("stat-percentage");
+      const target = isPercentage
+        ? parseFloat(el.getAttribute("data-target") || "0")
+        : parseInt(el.getAttribute("data-target") || "0");
 
       ScrollTrigger.create({
         trigger: el,
@@ -285,7 +511,7 @@ const { summary } = data;
       // Ease out expo
       const easeProgress = 1 - Math.pow(2, -10 * progress);
       const current = isPercentage
-        ? (target * easeProgress).toFixed(2)
+        ? (target * easeProgress).toFixed(2) + "%"
         : Math.floor(target * easeProgress).toLocaleString("es-ES");
 
       element.textContent = current.toString();
@@ -294,7 +520,7 @@ const { summary } = data;
         requestAnimationFrame(updateValue);
       } else {
         element.textContent = isPercentage
-          ? target.toFixed(2)
+          ? target.toFixed(2) + "%"
           : target.toLocaleString("es-ES");
       }
     };
