@@ -384,9 +384,21 @@ const imagesWithBase = images.map((image) => ({
   }
 
   @media (max-width: 768px) {
+    .award-section {
+      padding-bottom: 4rem;
+    }
+
+    .award-content-wrapper {
+      overflow: visible;
+    }
+
+    .award-content {
+      padding: 0 1rem;
+    }
+
     .bento-grid {
       grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, minmax(300px, auto));
+      grid-template-rows: auto;
       gap: 1rem;
     }
 
@@ -398,6 +410,11 @@ const imagesWithBase = images.map((image) => ({
     .bento-image-card {
       grid-column: span 1;
       grid-row: span 1;
+      min-height: 250px;
+    }
+
+    .card-image-wrapper {
+      min-height: 250px;
     }
 
     .text-card-content {
