@@ -4,18 +4,55 @@ const baseUrl = import.meta.env.BASE_URL;
 const reviews = [
   {
     rating: 5,
-    comment: "Muy práctica para consultar mi información",
-    author: "Usuario VISE",
+    comment:
+      "La aplicación es muy buena y brinda información cuando uno la necesita",
+    author: "Javier Meza",
   },
   {
     rating: 5,
-    comment: "Fácil de usar y rápida",
-    author: "Colaborador",
+    comment:
+      "Muy buena aplicación para mantenernos informados de las oportunidades que nos ofrece la empresa",
+    author: "Roque Martínez",
   },
   {
-    rating: 4,
-    comment: "Excelente para registrar asistencia",
-    author: "Empleado",
+    rating: 5,
+    comment: "100% recomendada",
+    author: "Marcos Moisés Gutiérrez Dueñas",
+  },
+  {
+    rating: 5,
+    comment: "Muy buena app, fácil de usar",
+    author: "Brian Rivera Trejo",
+  },
+  {
+    rating: 5,
+    comment: "Excelente para gestionar mi cuenta de forma rápida",
+    author: "Francisco Javier Ortega Barrón",
+  },
+  {
+    rating: 5,
+    comment: "Es buena aplicación, cumple su función",
+    author: "Ángel de Jesús Coss Rodríguez",
+  },
+  {
+    rating: 5,
+    comment: "Muy bien, funciona correctamente",
+    author: "Silvestre Duarte Cabrera",
+  },
+  {
+    rating: 5,
+    comment: "Muy buena aplicación",
+    author: "Bernardo Hernández",
+  },
+  {
+    rating: 5,
+    comment: "Perfecta para consultar información",
+    author: "Francisco Javier Ortega Barrón",
+  },
+  {
+    rating: 5,
+    comment: "Fácil para cambiar contraseña y actualizar datos",
+    author: "Brayan López",
   },
 ];
 ---
@@ -503,22 +540,23 @@ const reviews = [
     padding: 1rem;
     opacity: 0;
     transform: translateY(20px);
-    animation: cycleReview 9s ease-in-out infinite;
+    /* 10 reviews × 3s cada una = 30s total */
+    animation: cycleReview 30s ease-in-out infinite;
     animation-delay: calc(var(--index) * 3s);
   }
 
   @keyframes cycleReview {
     0%,
-    5% {
+    2% {
       opacity: 0;
       transform: translateY(20px);
     }
-    10%,
-    28% {
+    4%,
+    8% {
       opacity: 1;
       transform: translateY(0);
     }
-    33%,
+    10%,
     100% {
       opacity: 0;
       transform: translateY(-20px);
