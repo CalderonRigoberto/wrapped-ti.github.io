@@ -91,16 +91,17 @@ const getEmbedUrl = (url: string): string => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
-                <linearGradient id="half-star">
-                  <stop offset="50%" stop-color="currentColor" />
+                <linearGradient id={`half-star-${index}`}>
+                  <stop offset="50%" stop-color="#fbbf24" />
                   <stop offset="50%" stop-color="transparent" />
                 </linearGradient>
               </defs>
               <path
                 d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                fill="url(#half-star)"
-                stroke="currentColor"
+                fill={`url(#half-star-${index})`}
+                stroke="#fbbf24"
                 stroke-width="1"
+                opacity="0.3"
               />
             </svg>
           )}
@@ -240,20 +241,28 @@ const getEmbedUrl = (url: string): string => {
   .testimonial-rating {
     display: flex;
     gap: 0.25rem;
+    align-items: center;
   }
 
   .star {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
     color: #fbbf24;
   }
 
   .star-filled {
-    filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.4));
+    color: #fbbf24;
+    filter: drop-shadow(0 0 3px rgba(251, 191, 36, 0.5));
+  }
+
+  .star-half {
+    color: #fbbf24;
   }
 
   .star-empty {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.25);
+    opacity: 0.6;
   }
 
   .testimonial-comment {

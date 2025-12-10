@@ -12,7 +12,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     <div class="gradient-blob cyan blob-closing-2"></div>
     <div class="gradient-blob purple blob-closing-3"></div>
   </div>
-
+  
   <div class="container closing-content">
     <button
       class="closing-badge scale-in"
@@ -21,17 +21,17 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     >
       <span>🎉</span>
     </button>
-
+    
     <h2 class="closing-title fade-in stagger-1">
       Gracias por un <span class="text-gradient-magenta">increíble</span>
       {data.year}
     </h2>
-
+    
     <p class="closing-subtitle fade-in stagger-2">
       Juntos transformamos ideas en realidad, resolvimos desafíos y construimos
       el futuro digital de nuestra empresa.
     </p>
-
+    
     <div class="closing-cta fade-in stagger-3">
       <div class="cta-text">
         <span class="cta-label">¿LISTOS PARA</span>
@@ -39,7 +39,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
         <span class="cta-label">?</span>
       </div>
     </div>
-
+    
     <div class="closing-credits fade-in stagger-4">
       <div class="credits-logo-wrapper">
         <img
@@ -52,7 +52,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       <p>Con cariño, el equipo de</p>
       <p class="credits-team">Tecnologías de la Información</p>
     </div>
-
+    
     <div class="scroll-to-top fade-in stagger-5">
       <button
         class="scroll-top-btn"
@@ -77,7 +77,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       </button>
     </div>
   </div>
-
+  
   <!-- Confetti canvas -->
   <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
 </section>
@@ -93,13 +93,13 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     overflow: hidden;
     padding: var(--section-padding) 0;
   }
-
+  
   .closing-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
   }
-
+  
   .blob-closing-1 {
     width: 500px;
     height: 500px;
@@ -107,7 +107,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     left: -150px;
     animation: pulse-glow 8s ease-in-out infinite;
   }
-
+  
   .blob-closing-2 {
     width: 400px;
     height: 400px;
@@ -115,7 +115,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     right: -100px;
     animation: pulse-glow 10s ease-in-out infinite reverse;
   }
-
+  
   .blob-closing-3 {
     width: 300px;
     height: 300px;
@@ -124,7 +124,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     transform: translate(-50%, -50%);
     animation: pulse-glow 12s ease-in-out infinite;
   }
-
+  
   @keyframes pulse-glow {
     0%,
     100% {
@@ -136,7 +136,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       filter: blur(100px);
     }
   }
-
+  
   .closing-content {
     position: relative;
     z-index: 1;
@@ -146,7 +146,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     align-items: center;
     gap: 2rem;
   }
-
+  
   .closing-badge {
     width: 80px;
     height: 80px;
@@ -175,7 +175,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
   .closing-badge:active {
     transform: scale(0.95);
   }
-
+  
   @keyframes bounce-soft {
     0%,
     100% {
@@ -185,37 +185,37 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       transform: translateY(-10px);
     }
   }
-
+  
   .closing-title {
     font-size: clamp(2rem, 6vw, 5rem);
     max-width: 800px;
     line-height: 1.1;
   }
-
+  
   .closing-subtitle {
     font-size: clamp(1rem, 2vw, 1.375rem);
     color: var(--color-text-secondary);
     max-width: 600px;
     line-height: 1.7;
   }
-
+  
   .closing-cta {
     margin: 2rem 0;
   }
-
+  
   .cta-text {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
-
+  
   .cta-label {
     font-family: var(--font-display);
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 600;
     color: var(--color-text-secondary);
   }
-
+  
   .cta-year {
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 6rem);
@@ -226,7 +226,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     background-clip: text;
     animation: glow-text 3s ease-in-out infinite;
   }
-
+  
   @keyframes glow-text {
     0%,
     100% {
@@ -236,7 +236,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       filter: drop-shadow(0 0 40px rgba(255, 0, 110, 0.5));
     }
   }
-
+  
   .closing-credits {
     margin-top: 2rem;
     color: var(--color-text-muted);
@@ -273,7 +273,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     opacity: 1;
     transform: translateY(0);
   }
-
+  
   .credits-team {
     font-family: var(--font-display);
     font-size: 1.25rem;
@@ -281,11 +281,11 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     color: var(--color-text-primary);
     margin-top: 0;
   }
-
+  
   .scroll-to-top {
     margin-top: 3rem;
   }
-
+  
   .scroll-top-btn {
     display: flex;
     align-items: center;
@@ -301,22 +301,22 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     cursor: pointer;
     transition: all 0.3s var(--ease-out-expo);
   }
-
+  
   .scroll-top-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     color: var(--color-text-primary);
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
-
+  
   .scroll-top-btn svg {
     transition: transform 0.3s ease;
   }
-
+  
   .scroll-top-btn:hover svg {
     transform: translateY(-3px);
   }
-
+  
   .confetti-canvas {
     position: absolute;
     top: 0;
@@ -326,13 +326,13 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
     pointer-events: none;
     z-index: 2;
   }
-
+  
   @media (max-width: 768px) {
     .cta-text {
       flex-direction: column;
       gap: 0.5rem;
     }
-
+    
     .closing-badge {
       width: 60px;
       height: 60px;
@@ -343,11 +343,11 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
 
 <script>
   import { gsap, ScrollTrigger } from "../scripts/gsap-init";
-
+  
   document.addEventListener("DOMContentLoaded", () => {
     // Scroll to top functionality
     const scrollTopBtn = document.getElementById("scroll-top-btn");
-
+    
     if (scrollTopBtn) {
       scrollTopBtn.addEventListener("click", () => {
         window.scrollTo({
@@ -356,25 +356,25 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
         });
       });
     }
-
+    
     // Confetti animation
     const canvas = document.getElementById(
       "confetti-canvas"
     ) as HTMLCanvasElement;
     const ctx = canvas?.getContext("2d");
     const confettiBtn = document.getElementById("confetti-btn");
-
+    
     if (canvas && ctx) {
       let animationId: number | null = null;
-
+      
       const resizeCanvas = () => {
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
       };
-
+      
       resizeCanvas();
       window.addEventListener("resize", resizeCanvas);
-
+      
       interface Particle {
         x: number;
         y: number;
@@ -386,7 +386,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
         rotationSpeed: number;
         opacity: number;
       }
-
+      
       const particles: Particle[] = [];
       const colors = [
         "#ff006e",
@@ -396,7 +396,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
         "#3a86ff",
         "#9be15d",
       ];
-
+      
       const createConfetti = () => {
         for (let i = 0; i < 150; i++) {
           particles.push({
@@ -412,24 +412,24 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
           });
         }
       };
-
+      
       const animateConfetti = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
         for (let i = particles.length - 1; i >= 0; i--) {
           const p = particles[i];
-
+          
           p.x += p.speedX;
           p.y += p.speedY;
           p.rotation += p.rotationSpeed;
           p.speedY += 0.05; // gravity
           p.opacity -= 0.003;
-
+          
           if (p.opacity <= 0 || p.y > canvas.height) {
             particles.splice(i, 1);
             continue;
           }
-
+          
           ctx.save();
           ctx.translate(p.x, p.y);
           ctx.rotate((p.rotation * Math.PI) / 180);
@@ -438,7 +438,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
           ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size / 2);
           ctx.restore();
         }
-
+        
         if (particles.length > 0) {
           animationId = requestAnimationFrame(animateConfetti);
         } else {
@@ -452,7 +452,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
           animateConfetti();
         }
       };
-
+      
       // Confetti on scroll into closing section (only once)
       let scrollConfettiTriggered = false;
       ScrollTrigger.create({
@@ -470,7 +470,7 @@ const logoPath = `${baseUrl}images/vise-logo-60.png`;
       // Confetti on button click (can be triggered multiple times)
       if (confettiBtn) {
         confettiBtn.addEventListener("click", triggerConfetti);
-      }
+          }
     }
 
     // Animate logo in closing section
