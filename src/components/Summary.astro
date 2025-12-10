@@ -592,12 +592,17 @@ const { summary } = data;
     font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 700;
-    background: var(--gradient-cyan);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #00f5d4;
     line-height: 1.2;
     margin-bottom: 0.5rem;
+    text-shadow:
+      0 1px 0 #00d4b8,
+      0 2px 0 #00b89c,
+      0 3px 0 #009c80,
+      0 4px 0 #008064,
+      0 5px 0 #006448,
+      0 6px 10px rgba(0, 0, 0, 0.4),
+      0 6px 20px rgba(0, 245, 212, 0.3);
   }
 
   .percentage-label {
