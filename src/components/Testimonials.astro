@@ -46,20 +46,10 @@ const duplicatedTestimonials = [
   ...enrichedTestimonials,
 ];
 
-// Calculate average rating
-const ratingsWithValue = enrichedTestimonials.filter(
-  (t) => t.rating !== undefined
-);
-const averageRating =
-  ratingsWithValue.length > 0
-    ? (
-        ratingsWithValue.reduce((sum, t) => sum + (t.rating || 0), 0) /
-        ratingsWithValue.length
-      ).toFixed(1)
-    : "5.0";
+const averageRating = 4.8;
 
 // Total tickets attended (this would come from your data, using a placeholder)
-const totalTickets = 1247;
+const totalTickets = 1175;
 ---
 
 <section class="testimonials-section" id="testimonials">
@@ -79,25 +69,42 @@ const totalTickets = 1247;
       </p>
 
       <div class="testimonials-metrics fade-in stagger-3">
-        <div class="metric-item">
-          <div class="metric-value">
-            <svg class="metric-star" viewBox="0 0 24 24" fill="currentColor">
+        <div class="rating-highlight">
+          <div class="rating-stars">
+            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
               ></path>
             </svg>
-            <span>{averageRating}</span>
+            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
+            <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
+              ></path>
+            </svg>
           </div>
-          <span class="metric-label">Calificación promedio</span>
+          <div class="rating-number shimmer-3d">{averageRating}</div>
+          <span class="rating-label">Calificación promedio</span>
         </div>
-        <div class="metric-divider"></div>
-        <div class="metric-item">
-          <div class="metric-value">
-            <span class="tickets-count"
-              >{totalTickets.toLocaleString("es-MX")}</span
-            >
-          </div>
-          <span class="metric-label">Tickets atendidos</span>
+        <div class="tickets-info">
+          <span class="tickets-count"
+            >{totalTickets.toLocaleString("es-MX")}</span
+          >
+          <span class="tickets-label">tickets atendidos</span>
         </div>
       </div>
     </div>
@@ -191,62 +198,124 @@ const totalTickets = 1247;
 
   .testimonials-metrics {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    padding: 1.25rem 2rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    gap: 1rem;
+    margin-top: 2.5rem;
   }
 
-  .metric-item {
+  .rating-highlight {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
-  .metric-value {
+  .rating-stars {
     display: flex;
-    align-items: center;
     gap: 0.5rem;
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
   }
 
-  .metric-star {
-    width: 28px;
-    height: 28px;
+  .star-icon {
+    width: 32px;
+    height: 32px;
     color: #fbbf24;
-    filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.5));
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+    animation: star-pulse 2s ease-in-out infinite;
+  }
+
+  .star-icon:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .star-icon:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .star-icon:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .star-icon:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .star-icon:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes star-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
+    }
+    50% {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.8));
+    }
+  }
+
+  .rating-number {
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+  }
+
+  .shimmer-3d {
+    background: linear-gradient(
+      90deg,
+      #fbbf24 0%,
+      #fbbf24 35%,
+      #ffffff 50%,
+      #fbbf24 65%,
+      #fbbf24 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer-gold 3s ease-in-out infinite;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 0 rgba(180, 130, 0, 0.8))
+      drop-shadow(0 8px 15px rgba(251, 191, 36, 0.4));
+  }
+
+  @keyframes shimmer-gold {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+
+  .rating-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .tickets-info {
+    margin-top: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
   }
 
   .tickets-count {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
     background: var(--gradient-purple);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .metric-label {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .metric-divider {
-    width: 1px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
+  .tickets-label {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
   }
 
   .testimonials-subtitle {
@@ -320,25 +389,29 @@ const totalTickets = 1247;
 
   @media (max-width: 768px) {
     .testimonials-metrics {
-      gap: 1.5rem;
-      padding: 1rem 1.5rem;
+      gap: 0.75rem;
+      margin-top: 2rem;
     }
 
-    .metric-value {
-      font-size: 1.5rem;
+    .star-icon {
+      width: 26px;
+      height: 26px;
     }
 
-    .metric-star {
-      width: 24px;
-      height: 24px;
+    .rating-number {
+      font-size: 3.5rem;
     }
 
-    .metric-label {
+    .rating-label {
       font-size: 0.75rem;
     }
 
-    .metric-divider {
-      height: 40px;
+    .tickets-count {
+      font-size: 1.25rem;
+    }
+
+    .tickets-label {
+      font-size: 0.9rem;
     }
 
     .testimonials-marquee-wrapper {
